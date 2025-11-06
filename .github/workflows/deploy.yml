@@ -1,0 +1,70 @@
+name: Build and Push Docker Images to GCP
+
+on:
+  push:
+    branches:
+      - Sahil
+  workflow_dispatch:  # Allow manual trigger
+
+env:
+  PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  REGION: us-central1
+  FASTAPI_IMAGE: pe-dashboard/fastapi
+  STREAMLIT_IMAGE: pe-dashboard/streamlit
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+      id-token: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+      
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+      
+      - name: Configure Docker for Artifact Registry
+        run: |
+          gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev
+      
+      - name: Build and Push FastAPI Image
+        run: |
+          docker build -f Dockerfile.fastapi \
+            -t ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.FASTAPI_IMAGE }}:${{ github.sha }} \
+            -t ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.FASTAPI_IMAGE }}:latest \
+            .
+          docker push ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.FASTAPI_IMAGE }}:${{ github.sha }}
+          docker push ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.FASTAPI_IMAGE }}:latest
+      
+      - name: Build and Push Streamlit Image
+        run: |
+          docker build -f Dockerfile.streamlit \
+            -t ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.STREAMLIT_IMAGE }}:${{ github.sha }} \
+            -t ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.STREAMLIT_IMAGE }}:latest \
+            .
+          docker push ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.STREAMLIT_IMAGE }}:${{ github.sha }}
+          docker push ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.STREAMLIT_IMAGE }}:latest
+      
+      - name: Success Message
+        run: |
+          echo "=========================================="
+          echo "✅ Docker images built and pushed!"
+          echo "=========================================="
+          echo ""
+          echo "Images available at:"
+          echo "- FastAPI: ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.FASTAPI_IMAGE }}:latest"
+          echo "- Streamlit: ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.STREAMLIT_IMAGE }}:latest"
+          echo ""
+          echo "To deploy, run locally:"
+          echo "  cd terraform"
+          echo "  terraform apply"
+          echo "=========================================="

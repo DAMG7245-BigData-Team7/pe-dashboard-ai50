@@ -1,0 +1,200 @@
+# Terraform Configuration for GCP Cloud Run Deployment
+
+terraform {
+  required_version = ">= 1.0"
+  
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 5.0"
+    }
+  }
+  
+  # Store state in GCS (after initial setup)
+  # backend "gcs" {
+  #   bucket = "pe-dashboard-terraform-state"
+  #   prefix = "terraform/state"
+  # }
+}
+
+# Configure GCP Provider
+provider "google" {
+  project = var.project_id
+  region  = var.region
+}
+
+# Enable required APIs
+resource "google_project_service" "required_apis" {
+  for_each = toset([
+    "run.googleapis.com",
+    "containerregistry.googleapis.com",
+    "cloudbuild.googleapis.com",
+    "secretmanager.googleapis.com"
+  ])
+  
+  service            = each.key
+  disable_on_destroy = false
+}
+
+# Secret Manager for API Keys
+resource "google_secret_manager_secret" "openai_api_key" {
+  secret_id = "openai-api-key"
+  
+  replication {
+    auto {}
+  }
+  
+  depends_on = [google_project_service.required_apis]
+}
+
+resource "google_secret_manager_secret_version" "openai_api_key_version" {
+  secret      = google_secret_manager_secret.openai_api_key.id
+  secret_data = var.openai_api_key
+}
+
+resource "google_secret_manager_secret" "pinecone_api_key" {
+  secret_id = "pinecone-api-key"
+  
+  replication {
+    auto {}
+  }
+  
+  depends_on = [google_project_service.required_apis]
+}
+
+resource "google_secret_manager_secret_version" "pinecone_api_key_version" {
+  secret      = google_secret_manager_secret.pinecone_api_key.id
+  secret_data = var.pinecone_api_key
+}
+
+# Cloud Run Service - FastAPI
+resource "google_cloud_run_v2_service" "fastapi" {
+  name     = "pe-dashboard-api"
+  location = var.region
+  
+  template {
+    containers {
+      image = "${var.region}-docker.pkg.dev/${var.project_id}/pe-dashboard/fastapi:latest"
+      
+      ports {
+        container_port = 8000
+      }
+      
+      env {
+        name = "OPENAI_API_KEY"
+        value_source {
+          secret_key_ref {
+            secret  = google_secret_manager_secret.openai_api_key.secret_id
+            version = "latest"
+          }
+        }
+      }
+      
+      env {
+        name = "PINECONE_API_KEY"
+        value_source {
+          secret_key_ref {
+            secret  = google_secret_manager_secret.pinecone_api_key.secret_id
+            version = "latest"
+          }
+        }
+      }
+      
+      resources {
+        limits = {
+          cpu    = "2"
+          memory = "2Gi"
+        }
+        cpu_idle = true
+      }
+    }
+    
+    scaling {
+      min_instance_count = 0
+      max_instance_count = 10
+    }
+  }
+  
+  traffic {
+    type    = "TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST"
+    percent = 100
+  }
+  
+  depends_on = [
+    google_project_service.required_apis,
+    google_secret_manager_secret_version.openai_api_key_version,
+    google_secret_manager_secret_version.pinecone_api_key_version
+  ]
+}
+
+# Cloud Run Service - Streamlit
+resource "google_cloud_run_v2_service" "streamlit" {
+  name     = "pe-dashboard-ui"
+  location = var.region
+  
+  template {
+    containers {
+      image = "${var.region}-docker.pkg.dev/${var.project_id}/pe-dashboard/streamlit:latest"
+      
+      ports {
+        container_port = 8501
+      }
+      
+      env {
+        name  = "API_BASE"
+        value = google_cloud_run_v2_service.fastapi.uri
+      }
+      
+      resources {
+        limits = {
+          cpu    = "1"
+          memory = "1Gi"
+        }
+        cpu_idle = true
+      }
+    }
+    
+    scaling {
+      min_instance_count = 0
+      max_instance_count = 5
+    }
+  }
+  
+  traffic {
+    type    = "TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST"
+    percent = 100
+  }
+  
+  depends_on = [
+    google_project_service.required_apis,
+    google_cloud_run_v2_service.fastapi
+  ]
+}
+
+# IAM - Allow public access (for demo)
+resource "google_cloud_run_v2_service_iam_member" "fastapi_public" {
+  name     = google_cloud_run_v2_service.fastapi.name
+  location = google_cloud_run_v2_service.fastapi.location
+  role     = "roles/run.invoker"
+  member   = "allUsers"
+}
+
+resource "google_cloud_run_v2_service_iam_member" "streamlit_public" {
+  name     = google_cloud_run_v2_service.streamlit.name
+  location = google_cloud_run_v2_service.streamlit.location
+  role     = "roles/run.invoker"
+  member   = "allUsers"
+}
+
+# Grant Secret Manager access to Cloud Run service accounts
+resource "google_secret_manager_secret_iam_member" "fastapi_openai_access" {
+  secret_id = google_secret_manager_secret.openai_api_key.secret_id
+  role      = "roles/secretmanager.secretAccessor"
+  member    = "serviceAccount:${google_cloud_run_v2_service.fastapi.template[0].service_account}"
+}
+
+resource "google_secret_manager_secret_iam_member" "fastapi_pinecone_access" {
+  secret_id = google_secret_manager_secret.pinecone_api_key.secret_id
+  role      = "roles/secretmanager.secretAccessor"
+  member    = "serviceAccount:${google_cloud_run_v2_service.fastapi.template[0].service_account}"
+}
