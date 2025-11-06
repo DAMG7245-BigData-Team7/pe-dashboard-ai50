@@ -355,7 +355,7 @@ if __name__ == "__main__":
             scrape_specific_companies([sys.argv[1]])
     else:
         print("\nUsage:")
-        print("  python final_comprehensive_scraper.py xAI          # One company")
-        print("  python final_comprehensive_scraper.py --partial    # Fix 7 partial")
-        print("  python final_comprehensive_scraper.py --js         # Fix 4 JS sites")
+        print("  python src/Comprehensive_scraper.py xAI          # One company")
+        print("  python src/Comprehensive_scraper.py --partial    # Fix 7 partial")
+        print("  python src/Csomprehensive_scraper.py --js         # Fix 4 JS sites")
         print()
