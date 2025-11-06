@@ -67,6 +67,28 @@ resource "google_secret_manager_secret_version" "pinecone_api_key_version" {
   secret_data = var.pinecone_api_key
 }
 
+# Grant Secret Manager access to default Cloud Run service account BEFORE creating services
+resource "google_secret_manager_secret_iam_member" "default_sa_openai_access" {
+  secret_id = google_secret_manager_secret.openai_api_key.secret_id
+  role      = "roles/secretmanager.secretAccessor"
+  member    = "serviceAccount:${data.google_project.project.number}-compute@developer.gserviceaccount.com"
+  
+  depends_on = [google_secret_manager_secret_version.openai_api_key_version]
+}
+
+resource "google_secret_manager_secret_iam_member" "default_sa_pinecone_access" {
+  secret_id = google_secret_manager_secret.pinecone_api_key.secret_id
+  role      = "roles/secretmanager.secretAccessor"
+  member    = "serviceAccount:${data.google_project.project.number}-compute@developer.gserviceaccount.com"
+  
+  depends_on = [google_secret_manager_secret_version.pinecone_api_key_version]
+}
+
+# Get project data
+data "google_project" "project" {
+  project_id = var.project_id
+}
+
 # Cloud Run Service - FastAPI
 resource "google_cloud_run_v2_service" "fastapi" {
   name     = "pe-dashboard-api"
@@ -123,7 +145,9 @@ resource "google_cloud_run_v2_service" "fastapi" {
   depends_on = [
     google_project_service.required_apis,
     google_secret_manager_secret_version.openai_api_key_version,
-    google_secret_manager_secret_version.pinecone_api_key_version
+    google_secret_manager_secret_version.pinecone_api_key_version,
+    google_secret_manager_secret_iam_member.default_sa_openai_access,
+    google_secret_manager_secret_iam_member.default_sa_pinecone_access
   ]
 }
 
@@ -167,7 +191,9 @@ resource "google_cloud_run_v2_service" "streamlit" {
   
   depends_on = [
     google_project_service.required_apis,
-    google_cloud_run_v2_service.fastapi
+    google_cloud_run_v2_service.fastapi,
+    google_secret_manager_secret_iam_member.default_sa_openai_access,
+    google_secret_manager_secret_iam_member.default_sa_pinecone_access
   ]
 }
 
@@ -184,17 +210,4 @@ resource "google_cloud_run_v2_service_iam_member" "streamlit_public" {
   location = google_cloud_run_v2_service.streamlit.location
   role     = "roles/run.invoker"
   member   = "allUsers"
-}
-
-# Grant Secret Manager access to Cloud Run service accounts
-resource "google_secret_manager_secret_iam_member" "fastapi_openai_access" {
-  secret_id = google_secret_manager_secret.openai_api_key.secret_id
-  role      = "roles/secretmanager.secretAccessor"
-  member    = "serviceAccount:${google_cloud_run_v2_service.fastapi.template[0].service_account}"
-}
-
-resource "google_secret_manager_secret_iam_member" "fastapi_pinecone_access" {
-  secret_id = google_secret_manager_secret.pinecone_api_key.secret_id
-  role      = "roles/secretmanager.secretAccessor"
-  member    = "serviceAccount:${google_cloud_run_v2_service.fastapi.template[0].service_account}"
 }
