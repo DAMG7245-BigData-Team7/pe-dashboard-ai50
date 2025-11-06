@@ -1,0 +1,176 @@
+{
+  "company": {
+    "company_name": "sakana-ai",
+    "company_id": "sakanaai",
+    "website": "https://sakana.ai",
+    "linkedin": null,
+    "founded_year": null,
+    "hq_city": "Tokyo",
+    "hq_country": "Japan",
+    "category": "AI Research",
+    "subcategory": "Artificial Intelligence",
+    "tagline": "Democratizing AI in Japan",
+    "description": "Sakana AI is building a world-class AI research lab in Tokyo. We are focused on developing AI solutions tailored to Japan’s needs, aiming to democratize AI across the country.",
+    "business_model": "B2B",
+    "target_customers": "Companies and organizations in Japan",
+    "pricing_model": "Not disclosed",
+    "competitors": [
+      "Not disclosed"
+    ]
+  },
+  "snapshot": {
+    "snapshot_date": "2025-11-06",
+    "total_funding": "$0M",
+    "total_funding_numeric": 0.0,
+    "last_funding_date": "2025-08-07",
+    "last_funding_stage": null,
+    "valuation": null,
+    "headcount": null,
+    "leadership_count": null,
+    "customer_count": null,
+    "revenue_range": null
+  },
+  "investor_profile": {
+    "total_raised": "Not disclosed",
+    "total_raised_numeric": null,
+    "funding_rounds": [
+      {
+        "date": "2025-08-07",
+        "stage": null,
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": null
+      }
+    ],
+    "lead_investors": [],
+    "all_investors": [],
+    "last_round_date": "2025-08-07",
+    "estimated_runway": null
+  },
+  "growth_metrics": {
+    "headcount": null,
+    "headcount_growth_yoy": null,
+    "open_roles": 10,
+    "recent_hires": null,
+    "office_locations": [
+      "Japan"
+    ],
+    "geographic_expansion": "Not disclosed",
+    "press_mentions_12m": null,
+    "website_traffic_trend": "Not disclosed",
+    "partnerships_count": 1,
+    "recent_partnerships": [
+      "Sakana AI and Daiwa Securities Group to Develop AI for Advanced Asset Consulting"
+    ],
+    "product_launches_12m": null,
+    "recent_products": [
+      "Continuous Thought Machine",
+      "からまる"
+    ],
+    "customer_growth": null,
+    "revenue_info": null
+  },
+  "visibility": {
+    "news_mentions_30d": null,
+    "sentiment_score": null,
+    "github_stars": null,
+    "github_url": null,
+    "glassdoor_rating": null,
+    "glassdoor_reviews": null,
+    "awards": [],
+    "media_coverage": []
+  },
+  "events": [
+    {
+      "date": "2025-08-07",
+      "event_type": "milestone",
+      "title": "First Open House Event for Applied Engineers",
+      "description": "Sakana AI organized its first Open House event aimed at Applied Engineers, with approximately 70 attendees onsite and over 200 participating online.",
+      "source": null
+    },
+    {
+      "date": "2025-05",
+      "event_type": "product_launch",
+      "title": "Launch of ALE-Agent",
+      "description": "Sakana AI developed ALE-Agent, a coding agent designed to tackle hard optimization problems. In a live competition, ALE-Agent achieved 21st out of 1,000 participants.",
+      "source": null
+    },
+    {
+      "date": "2025-03-19",
+      "event_type": "milestone",
+      "title": "Award at Defense Innovation Challenge",
+      "description": "Sakana AI won an award at a competition hosted by the US Department of Defense and Japan's Ministry of Defense for AI solutions in biodefense and disinformation countermeasures.",
+      "source": null
+    },
+    {
+      "date": null,
+      "event_type": "product_launch",
+      "title": "Introduction of Continuous Thought Machine",
+      "description": "Sakana AI introduced the Continuous Thought Machine, a new type of artificial neural network focused on synchronization between neuron dynamics for task-solving.",
+      "source": null
+    },
+    {
+      "date": null,
+      "event_type": "product_launch",
+      "title": "Launch of TinySwallow-1.5B Language Model",
+      "description": "Sakana AI developed TinySwallow-1.5B, a small Japanese language model achieving state-of-the-art performance in its category.",
+      "source": null
+    },
+    {
+      "date": null,
+      "event_type": "product_launch",
+      "title": "Introduction of CycleQD Technology",
+      "description": "Sakana AI developed CycleQD, a new technology for creating a group of LLM agents focused on lifelong learning.",
+      "source": null
+    },
+    {
+      "date": null,
+      "event_type": "product_launch",
+      "title": "Launch of Evo-Ukiyoe and Evo-Nishikie Models",
+      "description": "Sakana AI released Evo-Ukiyoe and Evo-Nishikie, models for generating images from prompts and colorizing illustrations from classical texts.",
+      "source": null
+    },
+    {
+      "date": null,
+      "event_type": "product_launch",
+      "title": "Launch of EvoSDXL-JP Model",
+      "description": "Sakana AI introduced EvoSDXL-JP, a fast image generation model that supports Japanese prompts.",
+      "source": null
+    }
+  ],
+  "funding_rounds": [
+    {
+      "date": "2025-08-07",
+      "stage": null,
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": null
+    }
+  ],
+  "leadership": [],
+  "products": [],
+  "disclosure_gaps": {
+    "missing_fields": [
+      "Founded year",
+      "Company valuation",
+      "Headcount",
+      "Headcount growth rate",
+      "Customer count",
+      "Revenue"
+    ],
+    "confidence_notes": {}
+  },
+  "data_sources": [
+    "Website: https://sakana.ai"
+  ],
+  "extracted_at": "2025-11-06T11:22:07.670271Z",
+  "analyst_notes": null,
+  "risks": [],
+  "opportunities": []
+}

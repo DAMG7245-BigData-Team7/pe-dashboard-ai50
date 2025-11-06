@@ -34,7 +34,6 @@ wheels/
 .env.local
 .env.*.local
 *.env
-.env 
 
 # ============================================
 # Data & Logs
@@ -72,9 +71,10 @@ terraform/crash.*.log
 # ============================================
 # GCP & Cloud
 # ============================================
-# Service account keys
+# Service account keys (but ALLOW structured data JSONs)
 *.json
 !data/forbes_ai50_seed.json
+!data/structured/*.json          # ← ADDED: Allow structured company data
 !package*.json
 
 # GCP credentials
@@ -161,16 +161,10 @@ dags/__pycache__/
 *.tmp
 *.temp
 *~
+setup_gcp.sh
 
 # Reports (can keep some for submission)
 # *.md
 # !README.md
 # !DEPLOYMENT.md
 # !EVAL.md
-setup_gcp.sh
-# Terraform
-terraform/.terraform/
-terraform/*.tfstate
-terraform/*.tfstate.backup
-terraform/.terraform.lock.hcl
-terraform/terraform.tfvars      # ← Already here!.DS_Store

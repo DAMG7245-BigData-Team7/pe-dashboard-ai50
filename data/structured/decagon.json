@@ -1,0 +1,174 @@
+{
+  "company": {
+    "company_name": "decagon",
+    "company_id": "decagon",
+    "website": "https://decagon.ai",
+    "linkedin": "not disclosed",
+    "founded_year": null,
+    "hq_city": "not disclosed",
+    "hq_country": "not disclosed",
+    "category": "Conversational AI",
+    "subcategory": "Customer Experience",
+    "tagline": "Conversational AI for Customer Experience",
+    "description": "Decagon was founded by serial entrepreneurs who saw how limited, rigid, and inefficient legacy customer experience systems had become. Their vision: empower every brand to deliver truly satisfying customer experiences, instantly and at scale. Today, global brands use Decagon to automate critical CX workflows—from resolving support tickets to guiding users through complex tasks—with fast, reliable AI agents that deliver always-on concierge service.",
+    "business_model": "B2B",
+    "target_customers": "Global brands",
+    "pricing_model": "not disclosed",
+    "competitors": [
+      "not disclosed"
+    ]
+  },
+  "snapshot": {
+    "snapshot_date": "2025-11-06",
+    "total_funding": "$0M",
+    "total_funding_numeric": 0.0,
+    "last_funding_date": null,
+    "last_funding_stage": "unknown",
+    "valuation": null,
+    "headcount": null,
+    "leadership_count": null,
+    "customer_count": null,
+    "revenue_range": null
+  },
+  "investor_profile": {
+    "total_raised": "Not disclosed",
+    "total_raised_numeric": null,
+    "funding_rounds": [
+      {
+        "date": null,
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [
+          "Accolades"
+        ],
+        "valuation": null,
+        "source": "About Page"
+      }
+    ],
+    "lead_investors": [],
+    "all_investors": [
+      "Accolades"
+    ],
+    "last_round_date": null,
+    "estimated_runway": null
+  },
+  "growth_metrics": {
+    "headcount": null,
+    "headcount_growth_yoy": null,
+    "open_roles": null,
+    "recent_hires": null,
+    "office_locations": [
+      "Not disclosed"
+    ],
+    "geographic_expansion": "Not disclosed",
+    "press_mentions_12m": null,
+    "website_traffic_trend": "Not disclosed",
+    "partnerships_count": 0,
+    "recent_partnerships": [
+      "Not disclosed"
+    ],
+    "product_launches_12m": 0,
+    "recent_products": [
+      "Not disclosed"
+    ],
+    "customer_growth": "Not disclosed",
+    "revenue_info": "Not disclosed"
+  },
+  "visibility": {
+    "news_mentions_30d": null,
+    "sentiment_score": null,
+    "github_stars": null,
+    "github_url": null,
+    "glassdoor_rating": null,
+    "glassdoor_reviews": null,
+    "awards": [],
+    "media_coverage": []
+  },
+  "events": [
+    {
+      "date": null,
+      "event_type": "other",
+      "title": "Decagon Dialogues 2025",
+      "description": "Watch the full replay of Decagon Dialogues 2025.",
+      "source": null
+    },
+    {
+      "date": null,
+      "event_type": "milestone",
+      "title": "10M+ Customers Served",
+      "description": "Decagon has served over 10 million customers across various industries.",
+      "source": null
+    },
+    {
+      "date": null,
+      "event_type": "milestone",
+      "title": "80% Deflection Rate",
+      "description": "Decagon has achieved an 80% deflection rate in customer support.",
+      "source": null
+    },
+    {
+      "date": null,
+      "event_type": "milestone",
+      "title": "70% Resolution Rate",
+      "description": "The company reports a 70% resolution rate for customer issues.",
+      "source": null
+    },
+    {
+      "date": null,
+      "event_type": "milestone",
+      "title": "65% Decrease in Support Operations Costs",
+      "description": "Decagon has reduced support operations costs by 65%.",
+      "source": null
+    },
+    {
+      "date": null,
+      "event_type": "milestone",
+      "title": "93% Agent Quality Score",
+      "description": "Decagon maintains a quality score of 93% for its AI agents.",
+      "source": null
+    },
+    {
+      "date": null,
+      "event_type": "other",
+      "title": "AI Agents for Concierge Customer Experience",
+      "description": "Decagon offers AI agents to enhance customer experience with concierge service.",
+      "source": null
+    }
+  ],
+  "funding_rounds": [
+    {
+      "date": null,
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [
+        "Accolades"
+      ],
+      "valuation": null,
+      "source": "About Page"
+    }
+  ],
+  "leadership": [],
+  "products": [],
+  "disclosure_gaps": {
+    "missing_fields": [
+      "Founded year",
+      "Company valuation",
+      "Headcount",
+      "Headcount growth rate",
+      "Customer count",
+      "Revenue"
+    ],
+    "confidence_notes": {}
+  },
+  "data_sources": [
+    "Website: https://decagon.ai"
+  ],
+  "extracted_at": "2025-11-06T11:15:58.667162Z",
+  "analyst_notes": null,
+  "risks": [],
+  "opportunities": []
+}

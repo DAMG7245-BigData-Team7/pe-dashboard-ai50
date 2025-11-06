@@ -1,0 +1,154 @@
+{
+  "company": {
+    "company_name": "photoroom",
+    "company_id": "photoroom",
+    "website": "https://www.photoroom.com",
+    "linkedin": null,
+    "founded_year": 2019,
+    "hq_city": "Not disclosed",
+    "hq_country": "Not disclosed",
+    "category": "Photo Editing",
+    "subcategory": "AI Tools",
+    "tagline": "AI-Powered Photo Editor and Listing Studio for Product Photography",
+    "description": "Photoroom helps entrepreneurs, marketers, and global teams produce high-quality content without the traditional bottlenecks. From automated editing to AI-generated scenes, we’re building the future of visual creation. We’re not just great at removing backgrounds; we’re removing the barriers between great ideas and great visuals.",
+    "business_model": "B2B, B2C",
+    "target_customers": "Individuals, growing brands, and enterprises",
+    "pricing_model": "Starting from $7.50 a month",
+    "competitors": [
+      "Canva",
+      "Adobe Photoshop",
+      "Fotor",
+      "Snappa",
+      "Remove.bg"
+    ]
+  },
+  "snapshot": {
+    "snapshot_date": "2025-11-06",
+    "total_funding": "$0M",
+    "total_funding_numeric": 0.0,
+    "last_funding_date": null,
+    "last_funding_stage": null,
+    "valuation": null,
+    "headcount": 300,
+    "leadership_count": null,
+    "customer_count": null,
+    "revenue_range": null
+  },
+  "investor_profile": {
+    "total_raised": "Not disclosed",
+    "total_raised_numeric": null,
+    "funding_rounds": [
+      {
+        "date": null,
+        "stage": null,
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": null
+      }
+    ],
+    "lead_investors": [],
+    "all_investors": [],
+    "last_round_date": null,
+    "estimated_runway": null
+  },
+  "growth_metrics": {
+    "headcount": 300,
+    "headcount_growth_yoy": null,
+    "open_roles": 13,
+    "recent_hires": null,
+    "office_locations": [
+      "Amsterdam",
+      "Baltimore",
+      "Barcelona",
+      "Berlin",
+      "Boston",
+      "Chicago",
+      "Denver",
+      "Dublin",
+      "France",
+      "Lisbon",
+      "London",
+      "New Jersey",
+      "New York",
+      "Oslo",
+      "Paris",
+      "Prague",
+      "Rome",
+      "San Francisco",
+      "Skopje",
+      "Tiranë",
+      "Vienna",
+      "Warsaw"
+    ],
+    "geographic_expansion": "Processed over 5 billion images a year; available in over 180 countries.",
+    "press_mentions_12m": null,
+    "website_traffic_trend": null,
+    "partnerships_count": 0,
+    "recent_partnerships": [],
+    "product_launches_12m": 0,
+    "recent_products": [
+      "Background remover",
+      "Image generator",
+      "Virtual model",
+      "Product staging",
+      "Background generator",
+      "AI product photography",
+      "Logo maker",
+      "Batch"
+    ],
+    "customer_growth": "Not disclosed",
+    "revenue_info": "Not disclosed"
+  },
+  "visibility": {
+    "news_mentions_30d": null,
+    "sentiment_score": null,
+    "github_stars": null,
+    "github_url": null,
+    "glassdoor_rating": null,
+    "glassdoor_reviews": null,
+    "awards": [],
+    "media_coverage": []
+  },
+  "events": [
+    {
+      "date": "2019-01-01",
+      "event_type": "milestone",
+      "title": "Photoroom Founded",
+      "description": "Photoroom was founded when Matt, a product manager at GoPro, realized the need for a better photo editing tool after a frustrating experience with a clunky tool.",
+      "source": null
+    }
+  ],
+  "funding_rounds": [
+    {
+      "date": null,
+      "stage": null,
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": null
+    }
+  ],
+  "leadership": [],
+  "products": [],
+  "disclosure_gaps": {
+    "missing_fields": [
+      "Company valuation",
+      "Headcount growth rate",
+      "Customer count",
+      "Revenue"
+    ],
+    "confidence_notes": {}
+  },
+  "data_sources": [
+    "Website: https://www.photoroom.com"
+  ],
+  "extracted_at": "2025-11-06T11:21:14.839756Z",
+  "analyst_notes": null,
+  "risks": [],
+  "opportunities": []
+}

@@ -1,0 +1,96 @@
+{
+  "company": {
+    "company_name": "skild-ai",
+    "company_id": "skildai",
+    "website": "https://www.skild.ai",
+    "linkedin": "Not disclosed",
+    "founded_year": null,
+    "hq_city": "Not disclosed",
+    "hq_country": "Not disclosed",
+    "category": "Artificial Intelligence",
+    "subcategory": "Robotics",
+    "tagline": "Bringing AI into the physical world",
+    "description": "Skild.ai is building AI that will interact with and affect change in the real world. We believe in tackling the robotics problem in its full generality, creating a unified brain to control any robot for any task.",
+    "business_model": "B2B",
+    "target_customers": "Not disclosed",
+    "pricing_model": "Not disclosed",
+    "competitors": [
+      "Not disclosed"
+    ]
+  },
+  "snapshot": {
+    "snapshot_date": "2025-11-06",
+    "total_funding": "Not disclosed",
+    "total_funding_numeric": null,
+    "last_funding_date": null,
+    "last_funding_stage": null,
+    "valuation": "Not disclosed",
+    "headcount": null,
+    "leadership_count": null,
+    "customer_count": null,
+    "revenue_range": null
+  },
+  "investor_profile": {
+    "total_raised": null,
+    "total_raised_numeric": null,
+    "funding_rounds": [],
+    "lead_investors": [],
+    "all_investors": [],
+    "last_round_date": null,
+    "estimated_runway": null
+  },
+  "growth_metrics": {
+    "headcount": null,
+    "headcount_growth_yoy": null,
+    "open_roles": null,
+    "recent_hires": null,
+    "office_locations": [],
+    "geographic_expansion": "Not disclosed",
+    "press_mentions_12m": null,
+    "website_traffic_trend": "Not disclosed",
+    "partnerships_count": 0,
+    "recent_partnerships": [],
+    "product_launches_12m": 0,
+    "recent_products": [
+      "Autonomous Packing",
+      "Mobile Manipulation Platform",
+      "Security/Inspection Robot Platform",
+      "Physical AI should be"
+    ],
+    "customer_growth": null,
+    "revenue_info": null
+  },
+  "visibility": {
+    "news_mentions_30d": null,
+    "sentiment_score": null,
+    "github_stars": null,
+    "github_url": null,
+    "glassdoor_rating": null,
+    "glassdoor_reviews": null,
+    "awards": [],
+    "media_coverage": []
+  },
+  "events": [],
+  "funding_rounds": [],
+  "leadership": [],
+  "products": [],
+  "disclosure_gaps": {
+    "missing_fields": [
+      "Founded year",
+      "Total funding amount",
+      "Company valuation",
+      "Headcount",
+      "Headcount growth rate",
+      "Customer count",
+      "Revenue"
+    ],
+    "confidence_notes": {}
+  },
+  "data_sources": [
+    "Website: https://www.skild.ai"
+  ],
+  "extracted_at": "2025-11-06T11:23:11.291689Z",
+  "analyst_notes": null,
+  "risks": [],
+  "opportunities": []
+}

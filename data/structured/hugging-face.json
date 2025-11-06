@@ -1,0 +1,308 @@
+{
+  "company": {
+    "company_name": "hugging-face",
+    "company_id": "huggingface",
+    "website": "https://huggingface.co",
+    "linkedin": null,
+    "founded_year": null,
+    "hq_city": "Not disclosed",
+    "hq_country": "Not disclosed",
+    "category": "Technology",
+    "subcategory": "Artificial Intelligence",
+    "tagline": "The AI community building the future.",
+    "description": "Hugging Face is the platform where the machine learning community collaborates on models, datasets, and applications. It aims to create, discover, and collaborate on machine learning more effectively.",
+    "business_model": "B2B and B2C",
+    "target_customers": "Individual researchers, developers, and organizations",
+    "pricing_model": "Starting at $20/user/month for team solutions and $0.60/hour for GPU services",
+    "competitors": [
+      "Ai2",
+      "Meta",
+      "Amazon",
+      "Google",
+      "Intel",
+      "Microsoft",
+      "Grammarly",
+      "Writer"
+    ]
+  },
+  "snapshot": {
+    "snapshot_date": "2025-11-06",
+    "total_funding": "$0M",
+    "total_funding_numeric": 0.0,
+    "last_funding_date": "2025-10-16",
+    "last_funding_stage": "unknown",
+    "valuation": null,
+    "headcount": 30,
+    "leadership_count": null,
+    "customer_count": null,
+    "revenue_range": null
+  },
+  "investor_profile": {
+    "total_raised": "Not disclosed",
+    "total_raised_numeric": null,
+    "funding_rounds": [
+      {
+        "date": "2024-10-29",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [
+          "nvidia"
+        ],
+        "valuation": null,
+        "source": "Building a Healthcare Robot from Simulation to Deployment with NVIDIA Isaac"
+      },
+      {
+        "date": "2025-10-23",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "Building the Open Agent Ecosystem Together: Introducing OpenEnv"
+      },
+      {
+        "date": "2025-10-22",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [
+          "VirusTotal"
+        ],
+        "valuation": null,
+        "source": "Hugging Face and VirusTotal collaborate to strengthen AI security"
+      },
+      {
+        "date": "2025-10-22",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "Sentence Transformers is joining Hugging Face!"
+      },
+      {
+        "date": "2025-10-21",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "Unlock the power of images with AI Sheets"
+      },
+      {
+        "date": "2025-10-16",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [
+          "Intel"
+        ],
+        "valuation": null,
+        "source": "Google Cloud C4 Brings a 70% TCO improvement on GPT OSS with Intel and Hugging Face"
+      }
+    ],
+    "lead_investors": [],
+    "all_investors": [
+      "Intel",
+      "VirusTotal",
+      "nvidia"
+    ],
+    "last_round_date": "2025-10-23",
+    "estimated_runway": null
+  },
+  "growth_metrics": {
+    "headcount": 30,
+    "headcount_growth_yoy": null,
+    "open_roles": 11,
+    "recent_hires": null,
+    "office_locations": [
+      "New York, New York, United States",
+      "United States"
+    ],
+    "geographic_expansion": "Not disclosed",
+    "press_mentions_12m": null,
+    "website_traffic_trend": "Not disclosed",
+    "partnerships_count": 0,
+    "recent_partnerships": [],
+    "product_launches_12m": 0,
+    "recent_products": [],
+    "customer_growth": "Not disclosed",
+    "revenue_info": "Not disclosed"
+  },
+  "visibility": {
+    "news_mentions_30d": null,
+    "sentiment_score": null,
+    "github_stars": null,
+    "github_url": null,
+    "glassdoor_rating": null,
+    "glassdoor_reviews": null,
+    "awards": [],
+    "media_coverage": []
+  },
+  "events": [
+    {
+      "date": "2025-10-22",
+      "event_type": "partnership",
+      "title": "Hugging Face and VirusTotal collaborate to strengthen AI security",
+      "description": null,
+      "source": null
+    },
+    {
+      "date": "2025-10-22",
+      "event_type": "other",
+      "title": "Sentence Transformers is joining Hugging Face!",
+      "description": null,
+      "source": null
+    },
+    {
+      "date": "2025-10-21",
+      "event_type": "product_launch",
+      "title": "Supercharge your OCR Pipelines with Open Models",
+      "description": null,
+      "source": null
+    },
+    {
+      "date": "2025-10-21",
+      "event_type": "other",
+      "title": "Unlock the power of images with AI Sheets",
+      "description": null,
+      "source": null
+    },
+    {
+      "date": "2025-10-16",
+      "event_type": "milestone",
+      "title": "Google Cloud C4 Brings a 70% TCO improvement on GPT OSS with Intel and Hugging Face",
+      "description": null,
+      "source": null
+    },
+    {
+      "date": "2025-10-15",
+      "event_type": "product_launch",
+      "title": "Get your VLM running in 3 simple steps on Intel CPUs",
+      "description": null,
+      "source": null
+    },
+    {
+      "date": "2025-10-02",
+      "event_type": "product_launch",
+      "title": "SOTA OCR on-device with Core ML and dots.ocr",
+      "description": null,
+      "source": null
+    },
+    {
+      "date": "2025-10-01",
+      "event_type": "product_launch",
+      "title": "Introducing RTEB: A New Standard for Retrieval Evaluation",
+      "description": null,
+      "source": null
+    },
+    {
+      "date": "2025-10-24",
+      "event_type": "product_launch",
+      "title": "LeRobot v0.4.0: Supercharging OSS Robot Learning",
+      "description": null,
+      "source": null
+    },
+    {
+      "date": "2025-10-27",
+      "event_type": "other",
+      "title": "huggingface_hub v1.0: Five Years of Building the Foundation of Open Machine Learning",
+      "description": null,
+      "source": null
+    }
+  ],
+  "funding_rounds": [
+    {
+      "date": "2024-10-29",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [
+        "nvidia"
+      ],
+      "valuation": null,
+      "source": "Building a Healthcare Robot from Simulation to Deployment with NVIDIA Isaac"
+    },
+    {
+      "date": "2025-10-23",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "Building the Open Agent Ecosystem Together: Introducing OpenEnv"
+    },
+    {
+      "date": "2025-10-22",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [
+        "VirusTotal"
+      ],
+      "valuation": null,
+      "source": "Hugging Face and VirusTotal collaborate to strengthen AI security"
+    },
+    {
+      "date": "2025-10-22",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "Sentence Transformers is joining Hugging Face!"
+    },
+    {
+      "date": "2025-10-21",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "Unlock the power of images with AI Sheets"
+    },
+    {
+      "date": "2025-10-16",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [
+        "Intel"
+      ],
+      "valuation": null,
+      "source": "Google Cloud C4 Brings a 70% TCO improvement on GPT OSS with Intel and Hugging Face"
+    }
+  ],
+  "leadership": [],
+  "products": [],
+  "disclosure_gaps": {
+    "missing_fields": [
+      "Founded year",
+      "Company valuation",
+      "Headcount growth rate",
+      "Customer count",
+      "Revenue"
+    ],
+    "confidence_notes": {}
+  },
+  "data_sources": [
+    "Website: https://huggingface.co"
+  ],
+  "extracted_at": "2025-11-06T11:18:54.244779Z",
+  "analyst_notes": null,
+  "risks": [],
+  "opportunities": []
+}

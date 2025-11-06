@@ -1,0 +1,155 @@
+{
+  "company": {
+    "company_name": "mistral-ai",
+    "company_id": "mistralai",
+    "website": "https://mistral.ai",
+    "linkedin": null,
+    "founded_year": 2023,
+    "hq_city": "Not disclosed",
+    "hq_country": "France",
+    "category": "Artificial Intelligence",
+    "subcategory": "Not disclosed",
+    "tagline": "Configurable AI for all builders.",
+    "description": "Mistral AI is a pioneering French artificial intelligence startup founded in April 2023 by three visionary researchers: Arthur Mensch, Guillaume Lample, and Timothée Lacroix. The company's mission is to democratize artificial intelligence through open-source, efficient, and innovative AI models, products, and solutions.",
+    "business_model": "B2B",
+    "target_customers": "Not disclosed",
+    "pricing_model": "Not disclosed",
+    "competitors": [
+      "Not disclosed"
+    ]
+  },
+  "snapshot": {
+    "snapshot_date": "2025-11-06",
+    "total_funding": "$0M",
+    "total_funding_numeric": 0.0,
+    "last_funding_date": "2023-04",
+    "last_funding_stage": "seed",
+    "valuation": null,
+    "headcount": 200,
+    "leadership_count": null,
+    "customer_count": null,
+    "revenue_range": null
+  },
+  "investor_profile": {
+    "total_raised": "Not disclosed",
+    "total_raised_numeric": null,
+    "funding_rounds": [
+      {
+        "date": "2023-04",
+        "stage": "seed",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": null
+      }
+    ],
+    "lead_investors": [],
+    "all_investors": [],
+    "last_round_date": "2023-04",
+    "estimated_runway": null
+  },
+  "growth_metrics": {
+    "headcount": 200,
+    "headcount_growth_yoy": null,
+    "open_roles": null,
+    "recent_hires": null,
+    "office_locations": [
+      "Paris",
+      "London",
+      "Palo Alto"
+    ],
+    "geographic_expansion": "Not disclosed",
+    "press_mentions_12m": null,
+    "website_traffic_trend": "Not disclosed",
+    "partnerships_count": 0,
+    "recent_partnerships": [],
+    "product_launches_12m": 4,
+    "recent_products": [
+      "Mistral Small 3",
+      "Codestral 25.01 API",
+      "Le Chat and AFP AI",
+      "Mistral AI Studio"
+    ],
+    "customer_growth": "Not disclosed",
+    "revenue_info": "Not disclosed"
+  },
+  "visibility": {
+    "news_mentions_30d": null,
+    "sentiment_score": null,
+    "github_stars": null,
+    "github_url": null,
+    "glassdoor_rating": null,
+    "glassdoor_reviews": null,
+    "awards": [],
+    "media_coverage": []
+  },
+  "events": [
+    {
+      "date": "2023-04",
+      "event_type": "other",
+      "title": "Company Founded",
+      "description": "Mistral AI, a pioneering French artificial intelligence startup, was founded in April 2023 by three researchers: Arthur Mensch, Guillaume Lample, and Timothée Lacroix.",
+      "source": null
+    },
+    {
+      "date": "2024-11-18",
+      "event_type": "product_launch",
+      "title": "Launch of Le Chat AI Integration",
+      "description": "Le Chat and AFP team up to deliver AI powered by news, providing Le Chat users with richer, more reliable and more accurate responses.",
+      "source": null
+    },
+    {
+      "date": "2025-01-13",
+      "event_type": "product_launch",
+      "title": "Launch of Mistral Chat Features",
+      "description": "Mistral has entered the chat with new features including search, vision, ideation, and coding, offered for free.",
+      "source": null
+    },
+    {
+      "date": "2025-01-30",
+      "event_type": "product_launch",
+      "title": "Access to Codestral 25.01 API",
+      "description": "Mistral AI announced the availability of the Codestral 25.01 API.",
+      "source": null
+    },
+    {
+      "date": "2025-10-24",
+      "event_type": "product_launch",
+      "title": "Launch of Mistral AI Studio",
+      "description": "Introducing Mistral AI Studio, the production AI platform designed to empower users.",
+      "source": null
+    }
+  ],
+  "funding_rounds": [
+    {
+      "date": "2023-04",
+      "stage": "seed",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": null
+    }
+  ],
+  "leadership": [],
+  "products": [],
+  "disclosure_gaps": {
+    "missing_fields": [
+      "Company valuation",
+      "Headcount growth rate",
+      "Customer count",
+      "Revenue"
+    ],
+    "confidence_notes": {}
+  },
+  "data_sources": [
+    "Website: https://mistral.ai"
+  ],
+  "extracted_at": "2025-11-06T11:20:08.179183Z",
+  "analyst_notes": null,
+  "risks": [],
+  "opportunities": []
+}

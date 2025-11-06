@@ -1,0 +1,384 @@
+{
+  "company": {
+    "company_name": "anysphere",
+    "company_id": "anysphere",
+    "website": "https://cursor.sh",
+    "linkedin": "not_disclosed",
+    "founded_year": null,
+    "hq_city": "not disclosed",
+    "hq_country": "not disclosed",
+    "category": "Software",
+    "subcategory": "AI Coding Assistance",
+    "tagline": "The best way to code with AI",
+    "description": "Cursor is built to make you extraordinarily productive, integrating AI-powered coding assistance into various development environments. The platform enhances the coding experience across tools like GitHub and Slack, enabling seamless collaboration and review processes.",
+    "business_model": "B2B",
+    "target_customers": "Professional developers and development teams",
+    "pricing_model": "not disclosed",
+    "competitors": [
+      "not disclosed"
+    ]
+  },
+  "snapshot": {
+    "snapshot_date": "2025-11-06",
+    "total_funding": "$0M",
+    "total_funding_numeric": 0.0,
+    "last_funding_date": "2025-08-12",
+    "last_funding_stage": "unknown",
+    "valuation": null,
+    "headcount": null,
+    "leadership_count": null,
+    "customer_count": null,
+    "revenue_range": null
+  },
+  "investor_profile": {
+    "total_raised": "Not disclosed",
+    "total_raised_numeric": null,
+    "funding_rounds": [
+      {
+        "date": "2025-10-31",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [
+          "Salesforce",
+          "NVIDIA",
+          "PwC"
+        ],
+        "valuation": null,
+        "source": "Blog"
+      },
+      {
+        "date": "2025-10-30",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "Blog"
+      },
+      {
+        "date": "2025-10-29",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "Blog"
+      },
+      {
+        "date": "2025-10-29",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "Blog"
+      },
+      {
+        "date": "2025-10-07",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "Blog"
+      },
+      {
+        "date": "2025-10-01",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "Blog"
+      },
+      {
+        "date": "2025-09-12",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "Blog"
+      },
+      {
+        "date": "2025-08-29",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "Blog"
+      },
+      {
+        "date": "2025-08-21",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "Blog"
+      },
+      {
+        "date": "2025-08-12",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "Blog"
+      }
+    ],
+    "lead_investors": [],
+    "all_investors": [
+      "Salesforce",
+      "PwC",
+      "NVIDIA"
+    ],
+    "last_round_date": "2025-10-31",
+    "estimated_runway": null
+  },
+  "growth_metrics": {
+    "headcount": null,
+    "headcount_growth_yoy": null,
+    "open_roles": 10,
+    "recent_hires": null,
+    "office_locations": [
+      "San Francisco",
+      "New York"
+    ],
+    "geographic_expansion": "Not disclosed",
+    "press_mentions_12m": null,
+    "website_traffic_trend": "Not disclosed",
+    "partnerships_count": 0,
+    "recent_partnerships": [],
+    "product_launches_12m": 5,
+    "recent_products": [
+      "Cursor for Enterprise",
+      "Cloud Agents",
+      "Composer",
+      "Introducing Cursor 2.0 and Composer",
+      "Plan Mode"
+    ],
+    "customer_growth": null,
+    "revenue_info": null
+  },
+  "visibility": {
+    "news_mentions_30d": null,
+    "sentiment_score": null,
+    "github_stars": null,
+    "github_url": null,
+    "glassdoor_rating": null,
+    "glassdoor_reviews": null,
+    "awards": [],
+    "media_coverage": []
+  },
+  "events": [
+    {
+      "date": "2025-10-31",
+      "event_type": "product_launch",
+      "title": "Introducing Cursor for Enterprise",
+      "description": "Cursor is used by tens of thousands of enterprises, including Salesforce, NVIDIA, and PwC, to accelerate product velocity and build durable software.",
+      "source": null
+    },
+    {
+      "date": "2025-10-30",
+      "event_type": "product_launch",
+      "title": "Cloud Agents",
+      "description": "Cloud agents make it easy to run many agents at once, without requiring your laptop to stay connected to the internet.",
+      "source": null
+    },
+    {
+      "date": "2025-10-29",
+      "event_type": "product_launch",
+      "title": "Introducing Cursor 2.0 and Composer",
+      "description": "A new interface and our first coding model, both purpose-built for working with agents.",
+      "source": null
+    },
+    {
+      "date": "2025-10-29",
+      "event_type": "product_launch",
+      "title": "Composer: Building a fast frontier model with RL",
+      "description": "Composer is our new agent model designed for software engineering intelligence and speed.",
+      "source": null
+    },
+    {
+      "date": "2025-10-07",
+      "event_type": "product_launch",
+      "title": "Introducing Plan Mode",
+      "description": "Cursor can now create plans, research your codebase, and run agents for significantly longer.",
+      "source": null
+    },
+    {
+      "date": "2025-10-01",
+      "event_type": "product_launch",
+      "title": "Improving Java support in Cursor",
+      "description": "We’re speeding up the Java Language Server Protocol (LSP) and VS Code ecosystem.",
+      "source": null
+    },
+    {
+      "date": "2025-09-12",
+      "event_type": "product_launch",
+      "title": "Improving Cursor Tab with online RL",
+      "description": "Our new Tab model makes 21% fewer suggestions while having 28% higher accept rate.",
+      "source": null
+    },
+    {
+      "date": "2025-08-29",
+      "event_type": "product_launch",
+      "title": "1.5x faster MoE training with custom MXFP8 kernels",
+      "description": "Achieving a 3.5x MoE layer speedup with a complete rebuild for Blackwell GPUs.",
+      "source": null
+    },
+    {
+      "date": "2025-08-21",
+      "event_type": "product_launch",
+      "title": "Bringing the Cursor Agent to Linear",
+      "description": "You can now trigger Cursor Background Agents directly from Linear, helping you fix bugs, build features, and respond quickly to user feedback.",
+      "source": null
+    },
+    {
+      "date": "2025-08-12",
+      "event_type": "product_launch",
+      "title": "Updates to Teams and Auto",
+      "description": "Variable requests for teams and competitive pricing for Auto.",
+      "source": null
+    }
+  ],
+  "funding_rounds": [
+    {
+      "date": "2025-10-31",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [
+        "Salesforce",
+        "NVIDIA",
+        "PwC"
+      ],
+      "valuation": null,
+      "source": "Blog"
+    },
+    {
+      "date": "2025-10-30",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "Blog"
+    },
+    {
+      "date": "2025-10-29",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "Blog"
+    },
+    {
+      "date": "2025-10-29",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "Blog"
+    },
+    {
+      "date": "2025-10-07",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "Blog"
+    },
+    {
+      "date": "2025-10-01",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "Blog"
+    },
+    {
+      "date": "2025-09-12",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "Blog"
+    },
+    {
+      "date": "2025-08-29",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "Blog"
+    },
+    {
+      "date": "2025-08-21",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "Blog"
+    },
+    {
+      "date": "2025-08-12",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "Blog"
+    }
+  ],
+  "leadership": [],
+  "products": [],
+  "disclosure_gaps": {
+    "missing_fields": [
+      "Founded year",
+      "Company valuation",
+      "Headcount",
+      "Headcount growth rate",
+      "Customer count",
+      "Revenue"
+    ],
+    "confidence_notes": {}
+  },
+  "data_sources": [
+    "Website: https://cursor.sh"
+  ],
+  "extracted_at": "2025-11-06T11:13:50.854642Z",
+  "analyst_notes": null,
+  "risks": [],
+  "opportunities": []
+}

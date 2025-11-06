@@ -1,0 +1,196 @@
+{
+  "company": {
+    "company_name": "sierra",
+    "company_id": "sierra",
+    "website": "https://sierra.ai",
+    "linkedin": null,
+    "founded_year": null,
+    "hq_city": "New York",
+    "hq_country": "USA",
+    "category": "AI and Customer Experience",
+    "subcategory": "Conversational AI",
+    "tagline": "Better customer experiences",
+    "description": "Sierra helps businesses build better, more human customer experiences with AI. By partnering with industry leaders, we’re transforming customer experiences, pushing the boundaries of applied AI, and delivering measurable business impact at scale.",
+    "business_model": "B2B",
+    "target_customers": "Businesses seeking to enhance customer experience",
+    "pricing_model": "Not disclosed",
+    "competitors": [
+      "Not disclosed"
+    ]
+  },
+  "snapshot": {
+    "snapshot_date": "2025-11-06",
+    "total_funding": "$0M",
+    "total_funding_numeric": 0.0,
+    "last_funding_date": "2025-04",
+    "last_funding_stage": "unknown",
+    "valuation": null,
+    "headcount": null,
+    "leadership_count": null,
+    "customer_count": null,
+    "revenue_range": null
+  },
+  "investor_profile": {
+    "total_raised": "Not disclosed",
+    "total_raised_numeric": null,
+    "funding_rounds": [
+      {
+        "date": "2025-10",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "In the news"
+      },
+      {
+        "date": "2025-04",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "In the news"
+      },
+      {
+        "date": "2025-04",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "In the news"
+      }
+    ],
+    "lead_investors": [],
+    "all_investors": [],
+    "last_round_date": "2025-10",
+    "estimated_runway": null
+  },
+  "growth_metrics": {
+    "headcount": null,
+    "headcount_growth_yoy": null,
+    "open_roles": 10,
+    "recent_hires": null,
+    "office_locations": [
+      "New York",
+      "Atlanta",
+      "London",
+      "San Francisco",
+      "Toronto",
+      "Paris",
+      "Amsterdam",
+      "Singapore",
+      "Madrid"
+    ],
+    "geographic_expansion": "Expansion to Southeast Asia with a new office in Singapore",
+    "press_mentions_12m": 4,
+    "website_traffic_trend": "Not disclosed",
+    "partnerships_count": null,
+    "recent_partnerships": [],
+    "product_launches_12m": 1,
+    "recent_products": [
+      "Agent Engineering Manager",
+      "Data Engineer",
+      "Software Engineer, Site Reliability (SRE)",
+      "Software Engineer, Agent"
+    ],
+    "customer_growth": null,
+    "revenue_info": null
+  },
+  "visibility": {
+    "news_mentions_30d": null,
+    "sentiment_score": null,
+    "github_stars": null,
+    "github_url": null,
+    "glassdoor_rating": null,
+    "glassdoor_reviews": null,
+    "awards": [],
+    "media_coverage": []
+  },
+  "events": [
+    {
+      "date": "2025-11-03",
+      "event_type": "office_opening",
+      "title": "Sierra expands to Southeast Asia with a new Singapore office",
+      "description": "Sierra is strengthening its commitment to helping businesses across the region deliver more human customer experiences with AI.",
+      "source": null
+    },
+    {
+      "date": "2025-10-14",
+      "event_type": "milestone",
+      "title": "Introducing Sierra Summit 2025",
+      "description": "Sierra announces its first customer conference where it will reveal new AI innovations and hear from leaders in customer experience.",
+      "source": null
+    },
+    {
+      "date": "2025-10-23",
+      "event_type": "product_launch",
+      "title": "Publish your agent to ChatGPT",
+      "description": "Sierra allows users to reach hundreds of millions of ChatGPT users with a single click, while maintaining full control and brand integrity.",
+      "source": null
+    },
+    {
+      "date": "2025-10-13",
+      "event_type": "product_launch",
+      "title": "Introducing the 𝜏-Bench leaderboard",
+      "description": "A community-driven platform where researchers can submit, verify, and compare results while exploring model behavior through interactive tools.",
+      "source": null
+    }
+  ],
+  "funding_rounds": [
+    {
+      "date": "2025-10",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "In the news"
+    },
+    {
+      "date": "2025-04",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "In the news"
+    },
+    {
+      "date": "2025-04",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "In the news"
+    }
+  ],
+  "leadership": [],
+  "products": [],
+  "disclosure_gaps": {
+    "missing_fields": [
+      "Founded year",
+      "Company valuation",
+      "Headcount",
+      "Headcount growth rate",
+      "Customer count",
+      "Revenue"
+    ],
+    "confidence_notes": {}
+  },
+  "data_sources": [
+    "Website: https://sierra.ai"
+  ],
+  "extracted_at": "2025-11-06T11:23:04.201269Z",
+  "analyst_notes": null,
+  "risks": [],
+  "opportunities": []
+}

@@ -1,0 +1,202 @@
+{
+  "company": {
+    "company_name": "world-labs",
+    "company_id": "worldlabs",
+    "website": "https://www.worldlabs.ai",
+    "linkedin": "Not disclosed",
+    "founded_year": null,
+    "hq_city": "Not disclosed",
+    "hq_country": "Not disclosed",
+    "category": "Artificial Intelligence",
+    "subcategory": "Spatial Intelligence",
+    "tagline": "Building Large World Models to perceive, generate, and interact with the 3D world.",
+    "description": "World Labs is a spatial intelligence AI company building Large World Models to perceive, generate, and interact with the 3D world. We aim to lift AI models from the 2D plane of pixels to full 3D worlds, both virtual and real, endowing them with spatial intelligence as rich as our own.",
+    "business_model": "Not disclosed",
+    "target_customers": "Artists, designers, developers, engineers, creative users",
+    "pricing_model": null,
+    "competitors": [
+      "Not disclosed"
+    ]
+  },
+  "snapshot": {
+    "snapshot_date": "2025-11-06",
+    "total_funding": "$0M",
+    "total_funding_numeric": 0.0,
+    "last_funding_date": "2024-09-13",
+    "last_funding_stage": null,
+    "valuation": null,
+    "headcount": null,
+    "leadership_count": null,
+    "customer_count": null,
+    "revenue_range": null
+  },
+  "investor_profile": {
+    "total_raised": "Not disclosed",
+    "total_raised_numeric": null,
+    "funding_rounds": [
+      {
+        "date": "2024-09-13",
+        "stage": null,
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [
+          "Marc Benioff",
+          "Jim Breyer",
+          "Ron Conway",
+          "Jeff Dean",
+          "Geoffrey Hinton",
+          "Reid Hoffman",
+          "Andrej Karpathy",
+          "Ashton Kutcher",
+          "Eric Schmidt",
+          "Ram Shriram",
+          "Anne Wojcicki",
+          "Susan Wojcicki",
+          "Adobe Ventures",
+          "AMD Ventures",
+          "Databricks Ventures",
+          "NVentures",
+          "Salesforce Ventures",
+          "Shinrai Investments LLC"
+        ],
+        "valuation": null,
+        "source": "ABOUT PAGE"
+      }
+    ],
+    "lead_investors": [],
+    "all_investors": [
+      "Ashton Kutcher",
+      "Jim Breyer",
+      "Eric Schmidt",
+      "Ron Conway",
+      "Ram Shriram",
+      "Susan Wojcicki",
+      "Salesforce Ventures",
+      "Adobe Ventures",
+      "AMD Ventures",
+      "Databricks Ventures",
+      "Shinrai Investments LLC",
+      "Geoffrey Hinton",
+      "Andrej Karpathy",
+      "Jeff Dean",
+      "Reid Hoffman",
+      "NVentures",
+      "Marc Benioff",
+      "Anne Wojcicki"
+    ],
+    "last_round_date": "2024-09-13",
+    "estimated_runway": null
+  },
+  "growth_metrics": {
+    "headcount": null,
+    "headcount_growth_yoy": null,
+    "open_roles": null,
+    "recent_hires": null,
+    "office_locations": [],
+    "geographic_expansion": "Not disclosed",
+    "press_mentions_12m": null,
+    "website_traffic_trend": "Not disclosed",
+    "partnerships_count": 0,
+    "recent_partnerships": [],
+    "product_launches_12m": 3,
+    "recent_products": [
+      "RTFM: A Real-Time Frame Model",
+      "Generating Bigger and Better Worlds",
+      "Generating Worlds"
+    ],
+    "customer_growth": "Not disclosed",
+    "revenue_info": "Not disclosed"
+  },
+  "visibility": {
+    "news_mentions_30d": null,
+    "sentiment_score": null,
+    "github_stars": null,
+    "github_url": null,
+    "glassdoor_rating": null,
+    "glassdoor_reviews": null,
+    "awards": [],
+    "media_coverage": []
+  },
+  "events": [
+    {
+      "date": "2025-10-16",
+      "event_type": "product_launch",
+      "title": "RTFM: A Real-Time Frame Model",
+      "description": "A research preview of RTFM, a new generative world model that generates video in real-time as you interact with it",
+      "source": null
+    },
+    {
+      "date": "2025-09-16",
+      "event_type": "product_launch",
+      "title": "Generating Bigger and Better Worlds",
+      "description": "Announcing our latest breakthrough in 3D world generation with larger, more detailed environments and improved fidelity",
+      "source": null
+    },
+    {
+      "date": "2024-12-02",
+      "event_type": "milestone",
+      "title": "Generating Worlds",
+      "description": "Sharing our first step towards spatial intelligence: an AI system that generates 3D worlds from a single image",
+      "source": null
+    },
+    {
+      "date": "2024-09-13",
+      "event_type": "leadership_change",
+      "title": "Formation of World Labs",
+      "description": "World Labs formed as a spatial intelligence AI company led by visionary AI pioneer Fei-Fei Li and a team of renowned technologists.",
+      "source": null
+    }
+  ],
+  "funding_rounds": [
+    {
+      "date": "2024-09-13",
+      "stage": null,
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [
+        "Marc Benioff",
+        "Jim Breyer",
+        "Ron Conway",
+        "Jeff Dean",
+        "Geoffrey Hinton",
+        "Reid Hoffman",
+        "Andrej Karpathy",
+        "Ashton Kutcher",
+        "Eric Schmidt",
+        "Ram Shriram",
+        "Anne Wojcicki",
+        "Susan Wojcicki",
+        "Adobe Ventures",
+        "AMD Ventures",
+        "Databricks Ventures",
+        "NVentures",
+        "Salesforce Ventures",
+        "Shinrai Investments LLC"
+      ],
+      "valuation": null,
+      "source": "ABOUT PAGE"
+    }
+  ],
+  "leadership": [],
+  "products": [],
+  "disclosure_gaps": {
+    "missing_fields": [
+      "Founded year",
+      "Company valuation",
+      "Headcount",
+      "Headcount growth rate",
+      "Customer count",
+      "Revenue"
+    ],
+    "confidence_notes": {}
+  },
+  "data_sources": [
+    "Website: https://www.worldlabs.ai"
+  ],
+  "extracted_at": "2025-11-06T11:26:00.333451Z",
+  "analyst_notes": null,
+  "risks": [],
+  "opportunities": []
+}

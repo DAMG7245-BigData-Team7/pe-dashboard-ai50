@@ -1,0 +1,139 @@
+{
+  "company": {
+    "company_name": "abridge",
+    "company_id": "abridge",
+    "website": "https://www.abridge.com",
+    "linkedin": null,
+    "founded_year": null,
+    "hq_city": "Not disclosed",
+    "hq_country": "Not disclosed",
+    "category": "Healthcare Technology",
+    "subcategory": "Generative AI",
+    "tagline": "Generative AI for Clinical Conversations",
+    "description": "Abridge transforms patient-clinician conversations into contextually aware, clinically useful, and billable AI-generated notes. We empower clinicians to focus on patient care by alleviating their documentation burdens with innovative AI technology.",
+    "business_model": "B2B",
+    "target_customers": "Healthcare systems and providers",
+    "pricing_model": "Not disclosed",
+    "competitors": [
+      "Not disclosed"
+    ]
+  },
+  "snapshot": {
+    "snapshot_date": "2025-11-06",
+    "total_funding": "$0M",
+    "total_funding_numeric": 0.0,
+    "last_funding_date": "2025-08-12",
+    "last_funding_stage": "unknown",
+    "valuation": null,
+    "headcount": 53,
+    "leadership_count": null,
+    "customer_count": null,
+    "revenue_range": null
+  },
+  "investor_profile": {
+    "total_raised": "Not disclosed",
+    "total_raised_numeric": null,
+    "funding_rounds": [
+      {
+        "date": "2025-08-12",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "Abridge Blog"
+      }
+    ],
+    "lead_investors": [],
+    "all_investors": [],
+    "last_round_date": "2025-08-12",
+    "estimated_runway": null
+  },
+  "growth_metrics": {
+    "headcount": 53,
+    "headcount_growth_yoy": null,
+    "open_roles": 53,
+    "recent_hires": null,
+    "office_locations": [
+      "Chicago",
+      "New York City",
+      "Pittsburgh",
+      "San Francisco",
+      "Seattle"
+    ],
+    "geographic_expansion": "Not disclosed",
+    "press_mentions_12m": null,
+    "website_traffic_trend": "Not disclosed",
+    "partnerships_count": 0,
+    "recent_partnerships": [],
+    "product_launches_12m": 0,
+    "recent_products": [],
+    "customer_growth": null,
+    "revenue_info": null
+  },
+  "visibility": {
+    "news_mentions_30d": null,
+    "sentiment_score": null,
+    "github_stars": null,
+    "github_url": null,
+    "glassdoor_rating": null,
+    "glassdoor_reviews": null,
+    "awards": [],
+    "media_coverage": []
+  },
+  "events": [
+    {
+      "date": "2025-08-12",
+      "event_type": "product_launch",
+      "title": "Real Time Prior Authorization at the Point of Conversation",
+      "description": null,
+      "source": null
+    },
+    {
+      "date": "2025-11-03",
+      "event_type": "other",
+      "title": "Abridge on Stage at NVIDIA GTC With Perpelxity, Cognition, and Crowdstrike",
+      "description": null,
+      "source": null
+    },
+    {
+      "date": "2025-10-31",
+      "event_type": "other",
+      "title": "October Event Recap: Letting Clinicians Lead",
+      "description": null,
+      "source": null
+    }
+  ],
+  "funding_rounds": [
+    {
+      "date": "2025-08-12",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "Abridge Blog"
+    }
+  ],
+  "leadership": [],
+  "products": [],
+  "disclosure_gaps": {
+    "missing_fields": [
+      "Founded year",
+      "Company valuation",
+      "Headcount growth rate",
+      "Customer count",
+      "Revenue"
+    ],
+    "confidence_notes": {}
+  },
+  "data_sources": [
+    "Website: https://www.abridge.com"
+  ],
+  "extracted_at": "2025-11-06T11:12:59.337039Z",
+  "analyst_notes": null,
+  "risks": [],
+  "opportunities": []
+}

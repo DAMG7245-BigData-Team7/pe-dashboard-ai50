@@ -1,0 +1,122 @@
+{
+  "company": {
+    "company_name": "langchain",
+    "company_id": "langchain",
+    "website": "https://www.langchain.com",
+    "linkedin": null,
+    "founded_year": null,
+    "hq_city": "Not disclosed",
+    "hq_country": "Not disclosed",
+    "category": "Technology",
+    "subcategory": "Agent Engineering",
+    "tagline": "Building the platform for agent engineering.",
+    "description": "LangChain is on a mission to make agents as reliable as databases and APIs. Their open-source frameworks, LangChain and LangGraph, give developers speed and granular control. Their commercial platform, LangSmith, delivers observability, evaluation, and deployment for rapid iteration, helping AI teams create reliable LLM systems.",
+    "business_model": "B2B",
+    "target_customers": "AI startups, global enterprises",
+    "pricing_model": "Not disclosed",
+    "competitors": [
+      "Not disclosed"
+    ]
+  },
+  "snapshot": {
+    "snapshot_date": "2025-11-06",
+    "total_funding": "$125.0M",
+    "total_funding_numeric": 125.0,
+    "last_funding_date": null,
+    "last_funding_stage": "series_b",
+    "valuation": null,
+    "headcount": null,
+    "leadership_count": null,
+    "customer_count": null,
+    "revenue_range": null
+  },
+  "investor_profile": {
+    "total_raised": "$125.0M",
+    "total_raised_numeric": 125.0,
+    "funding_rounds": [
+      {
+        "date": null,
+        "stage": "series_b",
+        "amount": "$125M",
+        "amount_numeric": 125.0,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": null
+      }
+    ],
+    "lead_investors": [],
+    "all_investors": [],
+    "last_round_date": null,
+    "estimated_runway": null
+  },
+  "growth_metrics": {
+    "headcount": null,
+    "headcount_growth_yoy": null,
+    "open_roles": null,
+    "recent_hires": null,
+    "office_locations": [
+      "San Francisco"
+    ],
+    "geographic_expansion": "Not disclosed",
+    "press_mentions_12m": null,
+    "website_traffic_trend": "Not disclosed",
+    "partnerships_count": 0,
+    "recent_partnerships": [],
+    "product_launches_12m": 0,
+    "recent_products": [],
+    "customer_growth": "Not disclosed",
+    "revenue_info": "Not disclosed"
+  },
+  "visibility": {
+    "news_mentions_30d": null,
+    "sentiment_score": null,
+    "github_stars": null,
+    "github_url": null,
+    "glassdoor_rating": null,
+    "glassdoor_reviews": null,
+    "awards": [],
+    "media_coverage": []
+  },
+  "events": [
+    {
+      "date": null,
+      "event_type": "leadership_change",
+      "title": "Team Growth",
+      "description": "Our small and mighty team is growing fast. We are hiring across many teams.",
+      "source": null
+    }
+  ],
+  "funding_rounds": [
+    {
+      "date": null,
+      "stage": "series_b",
+      "amount": "$125M",
+      "amount_numeric": 125.0,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": null
+    }
+  ],
+  "leadership": [],
+  "products": [],
+  "disclosure_gaps": {
+    "missing_fields": [
+      "Founded year",
+      "Company valuation",
+      "Headcount",
+      "Headcount growth rate",
+      "Customer count",
+      "Revenue"
+    ],
+    "confidence_notes": {}
+  },
+  "data_sources": [
+    "Website: https://www.langchain.com"
+  ],
+  "extracted_at": "2025-11-06T11:19:21.146507Z",
+  "analyst_notes": null,
+  "risks": [],
+  "opportunities": []
+}

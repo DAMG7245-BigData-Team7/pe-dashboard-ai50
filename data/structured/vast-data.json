@@ -1,0 +1,213 @@
+{
+  "company": {
+    "company_name": "vast-data",
+    "company_id": "vastdata",
+    "website": "https://www.vastdata.com",
+    "linkedin": null,
+    "founded_year": 2016,
+    "hq_city": "Not disclosed",
+    "hq_country": "Not disclosed",
+    "category": "Technology",
+    "subcategory": "Not disclosed",
+    "tagline": "The Operating System for the Thinking Machine",
+    "description": "VAST Data provides a transformative solution: the VAST AI Operating System, built on the innovative DASE (Distributed and Shared Everything) architecture. This is a foundational redesign for today's rigorous AI demands. Many data-intensive enterprises, including over 25% of the Fortune 100 and leading global GPU Cloud service providers, recognize legacy infrastructure limitations and have chosen VAST Data for their strategic AI initiatives.",
+    "business_model": "B2B",
+    "target_customers": "Data-intensive enterprises including Fortune 100 companies",
+    "pricing_model": "Not disclosed",
+    "competitors": [
+      "Not disclosed"
+    ]
+  },
+  "snapshot": {
+    "snapshot_date": "2025-11-06",
+    "total_funding": "$80.0M",
+    "total_funding_numeric": 80.0,
+    "last_funding_date": "2020-04",
+    "last_funding_stage": "series_a",
+    "valuation": null,
+    "headcount": null,
+    "leadership_count": null,
+    "customer_count": null,
+    "revenue_range": null
+  },
+  "investor_profile": {
+    "total_raised": "$80.0M",
+    "total_raised_numeric": 80.0,
+    "funding_rounds": [
+      {
+        "date": "2023-12",
+        "stage": "series_d_plus",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": "$9.1B",
+        "source": "ABOUT PAGE"
+      },
+      {
+        "date": "2023-04",
+        "stage": "series_c",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": "$3.7B",
+        "source": "ABOUT PAGE"
+      },
+      {
+        "date": "2021-05",
+        "stage": "series_b",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": "$1.2B",
+        "source": "ABOUT PAGE"
+      },
+      {
+        "date": "2020-04",
+        "stage": "series_a",
+        "amount": "$80M",
+        "amount_numeric": 80.0,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "ABOUT PAGE"
+      }
+    ],
+    "lead_investors": [],
+    "all_investors": [],
+    "last_round_date": "2023-12",
+    "estimated_runway": null
+  },
+  "growth_metrics": {
+    "headcount": null,
+    "headcount_growth_yoy": null,
+    "open_roles": null,
+    "recent_hires": null,
+    "office_locations": [
+      "Not disclosed"
+    ],
+    "geographic_expansion": "Not disclosed",
+    "press_mentions_12m": null,
+    "website_traffic_trend": "Not disclosed",
+    "partnerships_count": 0,
+    "recent_partnerships": [
+      "Not disclosed"
+    ],
+    "product_launches_12m": 0,
+    "recent_products": [
+      "NVIDIA BlueField-4"
+    ],
+    "customer_growth": "Not disclosed",
+    "revenue_info": "Not disclosed"
+  },
+  "visibility": {
+    "news_mentions_30d": null,
+    "sentiment_score": null,
+    "github_stars": null,
+    "github_url": null,
+    "glassdoor_rating": null,
+    "glassdoor_reviews": null,
+    "awards": [],
+    "media_coverage": []
+  },
+  "events": [
+    {
+      "date": "2023-12",
+      "event_type": "funding",
+      "title": "VAST triples valuation to $9.1B as demand surges for AI-first infrastructure",
+      "description": "VAST Data's valuation increased to $9.1 billion due to rising demand for its AI-first infrastructure.",
+      "source": null
+    },
+    {
+      "date": "2021-05",
+      "event_type": "funding",
+      "title": "Breakout growth drives VAST to $3.7B, marking a turning point in enterprise adoption",
+      "description": "VAST Data reached a valuation of $3.7 billion during a period of significant growth and enterprise adoption.",
+      "source": null
+    },
+    {
+      "date": "2019-02",
+      "event_type": "funding",
+      "title": "Early momentum propels VAST to a $1.2B valuation, signaling strong market validation",
+      "description": "VAST Data achieved a valuation of $1.2 billion, reflecting early market validation and momentum.",
+      "source": null
+    },
+    {
+      "date": "2016-01",
+      "event_type": "funding",
+      "title": "VAST emerges from stealth with $80M and a bold plan to end decades of storage tradeoffs",
+      "description": "VAST Data launched from stealth mode with $80 million in funding, aiming to revolutionize storage solutions.",
+      "source": null
+    },
+    {
+      "date": null,
+      "event_type": "milestone",
+      "title": "VAST Data is founded with a vision to reinvent data infrastructure from the ground up",
+      "description": "VAST Data was established to transform data infrastructure fundamentally, addressing modern computing needs.",
+      "source": null
+    }
+  ],
+  "funding_rounds": [
+    {
+      "date": "2023-12",
+      "stage": "series_d_plus",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": "$9.1B",
+      "source": "ABOUT PAGE"
+    },
+    {
+      "date": "2023-04",
+      "stage": "series_c",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": "$3.7B",
+      "source": "ABOUT PAGE"
+    },
+    {
+      "date": "2021-05",
+      "stage": "series_b",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": "$1.2B",
+      "source": "ABOUT PAGE"
+    },
+    {
+      "date": "2020-04",
+      "stage": "series_a",
+      "amount": "$80M",
+      "amount_numeric": 80.0,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "ABOUT PAGE"
+    }
+  ],
+  "leadership": [],
+  "products": [],
+  "disclosure_gaps": {
+    "missing_fields": [
+      "Company valuation",
+      "Headcount",
+      "Headcount growth rate",
+      "Customer count",
+      "Revenue"
+    ],
+    "confidence_notes": {}
+  },
+  "data_sources": [
+    "Website: https://www.vastdata.com"
+  ],
+  "extracted_at": "2025-11-06T11:25:36.749025Z",
+  "analyst_notes": null,
+  "risks": [],
+  "opportunities": []
+}

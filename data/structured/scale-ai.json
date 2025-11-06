@@ -1,0 +1,168 @@
+{
+  "company": {
+    "company_name": "scale-ai",
+    "company_id": "scaleai",
+    "website": "https://scale.com",
+    "linkedin": "Not disclosed",
+    "founded_year": 2016,
+    "hq_city": "San Francisco",
+    "hq_country": "Not disclosed",
+    "category": "AI Applications",
+    "subcategory": "Data Solutions",
+    "tagline": "Accelerate the Development of AI Applications",
+    "description": "Scale is focused on developing reliable AI systems for important decisions. They provide high-quality data and full-stack technologies that power leading AI models and enable enterprises and governments to effectively build, deploy, and oversee AI applications.",
+    "business_model": "B2B",
+    "target_customers": "Enterprises, U.S. Government Agencies",
+    "pricing_model": "Not disclosed",
+    "competitors": [
+      "Generative AI Companies",
+      "AI for the Enterprise"
+    ]
+  },
+  "snapshot": {
+    "snapshot_date": "2025-11-06",
+    "total_funding": "$0M",
+    "total_funding_numeric": 0.0,
+    "last_funding_date": "2023-10",
+    "last_funding_stage": "series_b",
+    "valuation": "$29B",
+    "headcount": 1000,
+    "leadership_count": null,
+    "customer_count": null,
+    "revenue_range": null
+  },
+  "investor_profile": {
+    "total_raised": "Not disclosed",
+    "total_raised_numeric": null,
+    "funding_rounds": [
+      {
+        "date": "2023-10",
+        "stage": "series_b",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [
+          "Google",
+          "Meta",
+          "Cohere"
+        ],
+        "valuation": "$29B",
+        "source": null
+      }
+    ],
+    "lead_investors": [],
+    "all_investors": [
+      "Cohere",
+      "Meta",
+      "Google"
+    ],
+    "last_round_date": "2023-10",
+    "estimated_runway": null
+  },
+  "growth_metrics": {
+    "headcount": 1000,
+    "headcount_growth_yoy": null,
+    "open_roles": null,
+    "recent_hires": null,
+    "office_locations": [
+      "San Francisco",
+      "New York",
+      "London",
+      "Washington D.C.",
+      "St. Louis"
+    ],
+    "geographic_expansion": "Expanding offices in New York, London, Washington D.C., and St. Louis to support growth, innovation, and reliable AI development worldwide.",
+    "press_mentions_12m": null,
+    "website_traffic_trend": "Not disclosed",
+    "partnerships_count": 1,
+    "recent_partnerships": [
+      "Korea’s AI Safety Institute"
+    ],
+    "product_launches_12m": null,
+    "recent_products": [
+      "Scale GenerativeAI Platform"
+    ],
+    "customer_growth": "Not disclosed",
+    "revenue_info": "Not disclosed"
+  },
+  "visibility": {
+    "news_mentions_30d": null,
+    "sentiment_score": null,
+    "github_stars": null,
+    "github_url": null,
+    "glassdoor_rating": null,
+    "glassdoor_reviews": null,
+    "awards": [],
+    "media_coverage": []
+  },
+  "events": [
+    {
+      "date": "2025-11-05",
+      "event_type": "office_opening",
+      "title": "Expanding Our Presence with New Offices Around the World",
+      "description": "Scale AI is expanding offices in New York, London, Washington D.C., and St. Louis to support growth, innovation, and reliable AI development worldwide.",
+      "source": null
+    },
+    {
+      "date": "2025-10-29",
+      "event_type": "leadership_change",
+      "title": "Talal AlBakr joins Scale AI",
+      "description": "Talal AlBakr joins Scale AI to build production-ready AI applications that power Saudi Arabia’s Vision 2030.",
+      "source": null
+    },
+    {
+      "date": "2025-10-28",
+      "event_type": "partnership",
+      "title": "Scale AI Partners with Korea’s AI Safety Institute",
+      "description": "Scale AI partners with Korea’s AI Safety Institute to advance global AI evaluation and governance.",
+      "source": null
+    },
+    {
+      "date": "2025-10-22",
+      "event_type": "partnership",
+      "title": "Partnering with Lindbergh Schools",
+      "description": "As part of our Pledge to America’s Youth, Scale AI is helping bring AI literacy into classrooms across America, starting in St. Louis.",
+      "source": null
+    },
+    {
+      "date": "2025-10-07",
+      "event_type": "milestone",
+      "title": "Enterprise Reinforcement Learning with Rubrics as Rewards",
+      "description": "Scale’s new method, Rubrics as Rewards, enables smaller models to outperform larger ones, translating directly to lower costs and tighter control for enterprises.",
+      "source": null
+    }
+  ],
+  "funding_rounds": [
+    {
+      "date": "2023-10",
+      "stage": "series_b",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [
+        "Google",
+        "Meta",
+        "Cohere"
+      ],
+      "valuation": "$29B",
+      "source": null
+    }
+  ],
+  "leadership": [],
+  "products": [],
+  "disclosure_gaps": {
+    "missing_fields": [
+      "Headcount growth rate",
+      "Customer count",
+      "Revenue"
+    ],
+    "confidence_notes": {}
+  },
+  "data_sources": [
+    "Website: https://scale.com"
+  ],
+  "extracted_at": "2025-11-06T11:22:46.803697Z",
+  "analyst_notes": null,
+  "risks": [],
+  "opportunities": []
+}

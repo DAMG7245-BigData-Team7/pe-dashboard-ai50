@@ -1,0 +1,341 @@
+{
+  "company": {
+    "company_name": "harvey",
+    "company_id": "harvey",
+    "website": "https://www.harvey.ai",
+    "linkedin": null,
+    "founded_year": null,
+    "hq_city": "not_disclosed",
+    "hq_country": "not_disclosed",
+    "category": "Legal Tech",
+    "subcategory": "AI Solutions for Legal Work",
+    "tagline": "Work Without Boundaries: The AI Platform for Legal Work",
+    "description": "Harvey provides domain-specific AI solutions to assist legal professionals in asking questions, analyzing documents, and drafting faster. It enables users to securely store and organize legal documents, research complex legal and regulatory questions, and streamline workflows tailored to their firm's needs.",
+    "business_model": "B2B",
+    "target_customers": "Law firms, professional service providers, Fortune 500 companies",
+    "pricing_model": "not_disclosed",
+    "competitors": [
+      "not disclosed"
+    ]
+  },
+  "snapshot": {
+    "snapshot_date": "2025-11-06",
+    "total_funding": "$0M",
+    "total_funding_numeric": 0.0,
+    "last_funding_date": "2025-10-16",
+    "last_funding_stage": "unknown",
+    "valuation": null,
+    "headcount": null,
+    "leadership_count": null,
+    "customer_count": null,
+    "revenue_range": null
+  },
+  "investor_profile": {
+    "total_raised": "Not disclosed",
+    "total_raised_numeric": null,
+    "funding_rounds": [
+      {
+        "date": "2025-09-29",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "Harvey's Momentum in Q3"
+      },
+      {
+        "date": "2025-11-04",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "Introducing Harvey's New Reasoning Capabilities"
+      },
+      {
+        "date": "2025-11-03",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "3 Principles That Helped us Scale Agent Development"
+      },
+      {
+        "date": "2025-10-31",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "Harvey’s Principles for AI Adoption and Rollout in Law Schools"
+      },
+      {
+        "date": "2025-10-30",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "Al Hounsell on Driving Legal Transformation That Lasts"
+      },
+      {
+        "date": "2025-10-29",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "Building Harvey’s iManage Integration"
+      },
+      {
+        "date": "2025-10-27",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "A Framework for Domain-Specific Evaluations"
+      },
+      {
+        "date": "2025-10-24",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "How Harvey Helps Mid-Sized Law Firms Scale Legal Work"
+      },
+      {
+        "date": "2025-10-22",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "How Harvey Integrates With Microsoft 365 Applications"
+      },
+      {
+        "date": "2025-10-21",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "Why Legal AI Needs to be Customized for Collaboration"
+      },
+      {
+        "date": "2025-10-16",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "Tony Capecci is Building Practical Pathways for Legal Innovation"
+      }
+    ],
+    "lead_investors": [],
+    "all_investors": [],
+    "last_round_date": "2025-11-04",
+    "estimated_runway": null
+  },
+  "growth_metrics": {
+    "headcount": null,
+    "headcount_growth_yoy": null,
+    "open_roles": null,
+    "recent_hires": null,
+    "office_locations": [],
+    "geographic_expansion": "Expanded global presence in Q3",
+    "press_mentions_12m": null,
+    "website_traffic_trend": null,
+    "partnerships_count": 0,
+    "recent_partnerships": [],
+    "product_launches_12m": 0,
+    "recent_products": [],
+    "customer_growth": "Celebrated major customer wins in Q3",
+    "revenue_info": "Introduced product breakthroughs in Q3."
+  },
+  "visibility": {
+    "news_mentions_30d": null,
+    "sentiment_score": null,
+    "github_stars": null,
+    "github_url": null,
+    "glassdoor_rating": null,
+    "glassdoor_reviews": null,
+    "awards": [],
+    "media_coverage": []
+  },
+  "events": [
+    {
+      "date": "2025-09-29",
+      "event_type": "milestone",
+      "title": "Harvey's Momentum in Q3",
+      "description": "In Q3, Harvey celebrated major customer wins, product breakthroughs, and expanded global presence.",
+      "source": null
+    },
+    {
+      "date": "2025-11-04",
+      "event_type": "product_launch",
+      "title": "Introducing Harvey's New Reasoning Capabilities",
+      "description": "Launch of new reasoning capabilities, enhancing Harvey's AI functionality.",
+      "source": null
+    },
+    {
+      "date": "2025-10-30",
+      "event_type": "other",
+      "title": "Building Harvey’s iManage Integration",
+      "description": "Development of integration with iManage to improve workflows for legal professionals.",
+      "source": null
+    },
+    {
+      "date": "2025-10-22",
+      "event_type": "other",
+      "title": "How Harvey Integrates With Microsoft 365 Applications",
+      "description": "Integration of Harvey's AI platform with Microsoft 365 applications to streamline legal processes.",
+      "source": null
+    }
+  ],
+  "funding_rounds": [
+    {
+      "date": "2025-09-29",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "Harvey's Momentum in Q3"
+    },
+    {
+      "date": "2025-11-04",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "Introducing Harvey's New Reasoning Capabilities"
+    },
+    {
+      "date": "2025-11-03",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "3 Principles That Helped us Scale Agent Development"
+    },
+    {
+      "date": "2025-10-31",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "Harvey’s Principles for AI Adoption and Rollout in Law Schools"
+    },
+    {
+      "date": "2025-10-30",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "Al Hounsell on Driving Legal Transformation That Lasts"
+    },
+    {
+      "date": "2025-10-29",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "Building Harvey’s iManage Integration"
+    },
+    {
+      "date": "2025-10-27",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "A Framework for Domain-Specific Evaluations"
+    },
+    {
+      "date": "2025-10-24",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "How Harvey Helps Mid-Sized Law Firms Scale Legal Work"
+    },
+    {
+      "date": "2025-10-22",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "How Harvey Integrates With Microsoft 365 Applications"
+    },
+    {
+      "date": "2025-10-21",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "Why Legal AI Needs to be Customized for Collaboration"
+    },
+    {
+      "date": "2025-10-16",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "Tony Capecci is Building Practical Pathways for Legal Innovation"
+    }
+  ],
+  "leadership": [],
+  "products": [],
+  "disclosure_gaps": {
+    "missing_fields": [
+      "Founded year",
+      "Company valuation",
+      "Headcount",
+      "Headcount growth rate",
+      "Customer count",
+      "Revenue"
+    ],
+    "confidence_notes": {}
+  },
+  "data_sources": [
+    "Website: https://www.harvey.ai"
+  ],
+  "extracted_at": "2025-11-06T11:18:11.004091Z",
+  "analyst_notes": null,
+  "risks": [],
+  "opportunities": []
+}

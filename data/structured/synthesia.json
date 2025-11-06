@@ -1,0 +1,168 @@
+{
+  "company": {
+    "company_name": "synthesia",
+    "company_id": "synthesia",
+    "website": "https://www.synthesia.io",
+    "linkedin": null,
+    "founded_year": 2017,
+    "hq_city": "Not disclosed",
+    "hq_country": "Not disclosed",
+    "category": "AI Video Platform",
+    "subcategory": "Not disclosed",
+    "tagline": "#1 AI Video Platform for Business",
+    "description": "Synthesia was founded in 2017 by a team of AI researchers and entrepreneurs from UCL, Stanford, TUM and Cambridge. Our mission is to empower everyone to make video content - without cameras, microphones, or studios. Using AI, we’re here to radically change the process of content creation and unleash human creativity for good.",
+    "business_model": "B2B",
+    "target_customers": "Businesses",
+    "pricing_model": "Not disclosed",
+    "competitors": [
+      "Not disclosed"
+    ]
+  },
+  "snapshot": {
+    "snapshot_date": "2025-11-06",
+    "total_funding": "$0M",
+    "total_funding_numeric": 0.0,
+    "last_funding_date": "2017",
+    "last_funding_stage": "seed",
+    "valuation": null,
+    "headcount": 500,
+    "leadership_count": null,
+    "customer_count": null,
+    "revenue_range": null
+  },
+  "investor_profile": {
+    "total_raised": "Not disclosed",
+    "total_raised_numeric": null,
+    "funding_rounds": [
+      {
+        "date": "2017",
+        "stage": "seed",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [
+          "Victor Riparbelli",
+          "Steffen Tjerrild",
+          "Prof. Matt Niessner",
+          "Prof. Lourdes Agapito"
+        ],
+        "valuation": null,
+        "source": "About Page"
+      }
+    ],
+    "lead_investors": [],
+    "all_investors": [
+      "Prof. Lourdes Agapito",
+      "Prof. Matt Niessner",
+      "Steffen Tjerrild",
+      "Victor Riparbelli"
+    ],
+    "last_round_date": "2017",
+    "estimated_runway": null
+  },
+  "growth_metrics": {
+    "headcount": 500,
+    "headcount_growth_yoy": null,
+    "open_roles": null,
+    "recent_hires": null,
+    "office_locations": [
+      "London",
+      "New York City",
+      "Copenhagen",
+      "Munich",
+      "Amsterdam",
+      "Zurich"
+    ],
+    "geographic_expansion": "Not disclosed",
+    "press_mentions_12m": null,
+    "website_traffic_trend": "Not disclosed",
+    "partnerships_count": 0,
+    "recent_partnerships": [],
+    "product_launches_12m": null,
+    "recent_products": [],
+    "customer_growth": "Not disclosed",
+    "revenue_info": "345M Raised to date"
+  },
+  "visibility": {
+    "news_mentions_30d": null,
+    "sentiment_score": null,
+    "github_stars": null,
+    "github_url": null,
+    "glassdoor_rating": null,
+    "glassdoor_reviews": null,
+    "awards": [],
+    "media_coverage": []
+  },
+  "events": [
+    {
+      "date": "2017-01-01",
+      "event_type": "milestone",
+      "title": "Synthesia Founded",
+      "description": "Synthesia was founded by a team of AI researchers and entrepreneurs from UCL, Stanford, TUM, and Cambridge, aiming to empower video content creation without traditional recording equipment.",
+      "source": null
+    },
+    {
+      "date": null,
+      "event_type": "milestone",
+      "title": "200,000 Video Creators Using Synthesia",
+      "description": "As of the latest update, 200,000 video creators are utilizing Synthesia for video production, indicating the platform's growing popularity.",
+      "source": null
+    },
+    {
+      "date": null,
+      "event_type": "milestone",
+      "title": "50% of Fortune 100 Choose Synthesia",
+      "description": "It has been reported that half of the Fortune 100 companies have opted for Synthesia's video creation solutions.",
+      "source": null
+    },
+    {
+      "date": null,
+      "event_type": "milestone",
+      "title": "55,000 Companies Served Worldwide",
+      "description": "Synthesia has reached a milestone of serving 55,000 companies, showcasing its global impact in the video content creation industry.",
+      "source": null
+    },
+    {
+      "date": null,
+      "event_type": "milestone",
+      "title": "95% Time Saved on Video Creation",
+      "description": "Users of Synthesia report a time saving of 95% in the video creation process, highlighting the platform's efficiency.",
+      "source": null
+    }
+  ],
+  "funding_rounds": [
+    {
+      "date": "2017",
+      "stage": "seed",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [
+        "Victor Riparbelli",
+        "Steffen Tjerrild",
+        "Prof. Matt Niessner",
+        "Prof. Lourdes Agapito"
+      ],
+      "valuation": null,
+      "source": "About Page"
+    }
+  ],
+  "leadership": [],
+  "products": [],
+  "disclosure_gaps": {
+    "missing_fields": [
+      "Company valuation",
+      "Headcount growth rate",
+      "Customer count",
+      "Revenue"
+    ],
+    "confidence_notes": {}
+  },
+  "data_sources": [
+    "Website: https://www.synthesia.io"
+  ],
+  "extracted_at": "2025-11-06T11:24:26.578258Z",
+  "analyst_notes": null,
+  "risks": [],
+  "opportunities": []
+}

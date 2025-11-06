@@ -1,0 +1,180 @@
+{
+  "company": {
+    "company_name": "thinking-machine-labs",
+    "company_id": "thinkingmachinelabs",
+    "website": "https://thinkingmachines.ai",
+    "linkedin": null,
+    "founded_year": null,
+    "hq_city": "San Francisco",
+    "hq_country": "United States",
+    "category": "Artificial Intelligence",
+    "subcategory": "Research and Product",
+    "tagline": "AI that works for everyone",
+    "description": "Thinking Machines Lab is an artificial intelligence research and product company. We’re building a future where everyone has access to the knowledge and tools to make AI work for their unique needs and goals. Our team combines rigorous engineering with creative exploration, and we’re looking for collaborators to help shape this vision.",
+    "business_model": "B2B",
+    "target_customers": "Researchers and builders in AI",
+    "pricing_model": "Not disclosed",
+    "competitors": [
+      "OpenAI",
+      "Meta",
+      "Google AI"
+    ]
+  },
+  "snapshot": {
+    "snapshot_date": "2025-11-06",
+    "total_funding": "$0M",
+    "total_funding_numeric": 0.0,
+    "last_funding_date": "2023-10-29",
+    "last_funding_stage": "unknown",
+    "valuation": null,
+    "headcount": null,
+    "leadership_count": null,
+    "customer_count": null,
+    "revenue_range": null
+  },
+  "investor_profile": {
+    "total_raised": "Not disclosed",
+    "total_raised_numeric": null,
+    "funding_rounds": [
+      {
+        "date": "2023-10-01",
+        "stage": "seed",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "Announcing Tinker"
+      },
+      {
+        "date": "2023-10-29",
+        "stage": "unknown",
+        "amount": "Not disclosed",
+        "amount_numeric": null,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "Announcing Tinker Research and Teaching Grants"
+      }
+    ],
+    "lead_investors": [],
+    "all_investors": [],
+    "last_round_date": "2023-10-29",
+    "estimated_runway": null
+  },
+  "growth_metrics": {
+    "headcount": null,
+    "headcount_growth_yoy": null,
+    "open_roles": null,
+    "recent_hires": null,
+    "office_locations": [],
+    "geographic_expansion": "Not disclosed",
+    "press_mentions_12m": null,
+    "website_traffic_trend": "Not disclosed",
+    "partnerships_count": 0,
+    "recent_partnerships": [],
+    "product_launches_12m": 2,
+    "recent_products": [
+      "Tinker",
+      "Tinker Research and Teaching Grants"
+    ],
+    "customer_growth": "Not disclosed",
+    "revenue_info": "Not disclosed"
+  },
+  "visibility": {
+    "news_mentions_30d": null,
+    "sentiment_score": null,
+    "github_stars": null,
+    "github_url": null,
+    "glassdoor_rating": null,
+    "glassdoor_reviews": null,
+    "awards": [],
+    "media_coverage": []
+  },
+  "events": [
+    {
+      "date": "2023-10-29",
+      "event_type": "other",
+      "title": "Announcing Tinker Research and Teaching Grants",
+      "description": "Thinking Machines Lab announces grants for research and teaching.",
+      "source": null
+    },
+    {
+      "date": "2023-10-27",
+      "event_type": "other",
+      "title": "On-Policy Distillation",
+      "description": "Research collaboration led by Kevin Lu with team at Thinking Machines.",
+      "source": null
+    },
+    {
+      "date": "2023-10-01",
+      "event_type": "product_launch",
+      "title": "Announcing Tinker",
+      "description": "Thinking Machines Lab officially announces Tinker.",
+      "source": null
+    },
+    {
+      "date": "2023-09-29",
+      "event_type": "other",
+      "title": "LoRA Without Regret",
+      "description": "Research collaboration led by John Schulman with team at Thinking Machines.",
+      "source": null
+    },
+    {
+      "date": "2023-09-26",
+      "event_type": "other",
+      "title": "Modular Manifolds",
+      "description": "Research project conducted by Jeremy Bernstein.",
+      "source": null
+    },
+    {
+      "date": "2023-09-10",
+      "event_type": "other",
+      "title": "Defeating Nondeterminism in LLM Inference",
+      "description": "Research collaboration led by Horace He with team at Thinking Machines.",
+      "source": null
+    }
+  ],
+  "funding_rounds": [
+    {
+      "date": "2023-10-01",
+      "stage": "seed",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "Announcing Tinker"
+    },
+    {
+      "date": "2023-10-29",
+      "stage": "unknown",
+      "amount": "Not disclosed",
+      "amount_numeric": null,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "Announcing Tinker Research and Teaching Grants"
+    }
+  ],
+  "leadership": [],
+  "products": [],
+  "disclosure_gaps": {
+    "missing_fields": [
+      "Founded year",
+      "Company valuation",
+      "Headcount",
+      "Headcount growth rate",
+      "Customer count",
+      "Revenue"
+    ],
+    "confidence_notes": {}
+  },
+  "data_sources": [
+    "Website: https://thinkingmachines.ai"
+  ],
+  "extracted_at": "2025-11-06T11:24:44.810890Z",
+  "analyst_notes": null,
+  "risks": [],
+  "opportunities": []
+}

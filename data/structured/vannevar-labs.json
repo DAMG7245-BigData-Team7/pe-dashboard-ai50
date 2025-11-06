@@ -1,0 +1,140 @@
+{
+  "company": {
+    "company_name": "vannevar-labs",
+    "company_id": "vannevarlabs",
+    "website": "https://www.vannevarlabs.com",
+    "linkedin": null,
+    "founded_year": null,
+    "hq_city": "Not disclosed",
+    "hq_country": "Not disclosed",
+    "category": "Defense Technology",
+    "subcategory": "National Security Solutions",
+    "tagline": "Building the defense prime for competition with China",
+    "description": "Vannevar Labs brings together a multi-disciplinary group of people with a wide range of experiences, over 40 years of military service, engineers from some of the top tech companies and startups, and a passion for delivering mission critical tools to support public servants on the front lines of the country's most important national security problems.",
+    "business_model": "B2B",
+    "target_customers": "U.S. government",
+    "pricing_model": "Not disclosed",
+    "competitors": [
+      "Not disclosed"
+    ]
+  },
+  "snapshot": {
+    "snapshot_date": "2025-11-06",
+    "total_funding": "$1500.0M",
+    "total_funding_numeric": 1500.0,
+    "last_funding_date": "2025-09",
+    "last_funding_stage": "series_a",
+    "valuation": null,
+    "headcount": null,
+    "leadership_count": null,
+    "customer_count": null,
+    "revenue_range": null
+  },
+  "investor_profile": {
+    "total_raised": "$1500.0M",
+    "total_raised_numeric": 1500.0,
+    "funding_rounds": [
+      {
+        "date": "2025-09",
+        "stage": "series_a",
+        "amount": "$1.5B",
+        "amount_numeric": 1500.0,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": null,
+        "source": "In the Arena Podcast"
+      }
+    ],
+    "lead_investors": [],
+    "all_investors": [],
+    "last_round_date": "2025-09",
+    "estimated_runway": null
+  },
+  "growth_metrics": {
+    "headcount": null,
+    "headcount_growth_yoy": null,
+    "open_roles": null,
+    "recent_hires": null,
+    "office_locations": [
+      "Not disclosed"
+    ],
+    "geographic_expansion": "Not disclosed",
+    "press_mentions_12m": null,
+    "website_traffic_trend": "Not disclosed",
+    "partnerships_count": 0,
+    "recent_partnerships": [
+      "Not disclosed"
+    ],
+    "product_launches_12m": 0,
+    "recent_products": [
+      "Not disclosed"
+    ],
+    "customer_growth": "Not disclosed",
+    "revenue_info": "Not disclosed"
+  },
+  "visibility": {
+    "news_mentions_30d": null,
+    "sentiment_score": null,
+    "github_stars": null,
+    "github_url": null,
+    "glassdoor_rating": null,
+    "glassdoor_reviews": null,
+    "awards": [],
+    "media_coverage": []
+  },
+  "events": [
+    {
+      "date": "2025-09-25",
+      "event_type": "funding",
+      "title": "Raising Capital",
+      "description": "A discussion on raising capital for a $1.5B defense tech company.",
+      "source": "In the Arena Podcast"
+    },
+    {
+      "date": "2025-10-23",
+      "event_type": "milestone",
+      "title": "Designing AI Agents",
+      "description": "Release of a blog post on designing AI agents for the warfighter's workflow.",
+      "source": "Vannevar Labs Blog"
+    },
+    {
+      "date": "2025-09-09",
+      "event_type": "product_launch",
+      "title": "Deploying Agentic AI at Talisman Sabre 25",
+      "description": "Announcement of deploying agentic AI technology during the Talisman Sabre 25 exercise.",
+      "source": "Vannevar Labs Blog"
+    }
+  ],
+  "funding_rounds": [
+    {
+      "date": "2025-09",
+      "stage": "series_a",
+      "amount": "$1.5B",
+      "amount_numeric": 1500.0,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": null,
+      "source": "In the Arena Podcast"
+    }
+  ],
+  "leadership": [],
+  "products": [],
+  "disclosure_gaps": {
+    "missing_fields": [
+      "Founded year",
+      "Company valuation",
+      "Headcount",
+      "Headcount growth rate",
+      "Customer count",
+      "Revenue"
+    ],
+    "confidence_notes": {}
+  },
+  "data_sources": [
+    "Website: https://www.vannevarlabs.com"
+  ],
+  "extracted_at": "2025-11-06T11:25:15.592061Z",
+  "analyst_notes": null,
+  "risks": [],
+  "opportunities": []
+}

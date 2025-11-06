@@ -1,0 +1,134 @@
+{
+  "company": {
+    "company_name": "crusoe",
+    "company_id": "crusoe",
+    "website": "https://www.crusoe.ai",
+    "linkedin": null,
+    "founded_year": null,
+    "hq_city": "Not disclosed",
+    "hq_country": "Not disclosed",
+    "category": "Renewable Energy",
+    "subcategory": "AI Infrastructure",
+    "tagline": "The AI factory company",
+    "description": "Crusoe designs, builds, and operates the infrastructure powering the next generation of artificial intelligence. They focus on managed AI software solutions and platform as a service, providing an AI cloud platform that is scalable and powered by environmentally aligned energy sources.",
+    "business_model": "B2B",
+    "target_customers": "Organizations looking for AI infrastructure solutions",
+    "pricing_model": "Not disclosed",
+    "competitors": [
+      "NVIDIA",
+      "AMD"
+    ]
+  },
+  "snapshot": {
+    "snapshot_date": "2025-11-06",
+    "total_funding": "$1375.0M",
+    "total_funding_numeric": 1375.0,
+    "last_funding_date": "2025-10-24",
+    "last_funding_stage": "series_d_plus",
+    "valuation": "above $10 billion",
+    "headcount": null,
+    "leadership_count": null,
+    "customer_count": null,
+    "revenue_range": null
+  },
+  "investor_profile": {
+    "total_raised": "$1375.0M",
+    "total_raised_numeric": 1375.0,
+    "funding_rounds": [
+      {
+        "date": "2025-10-24",
+        "stage": "series_d_plus",
+        "amount": "$1.375 billion",
+        "amount_numeric": 1375.0,
+        "lead_investor": null,
+        "other_investors": [],
+        "valuation": "above $10 billion",
+        "source": null
+      }
+    ],
+    "lead_investors": [],
+    "all_investors": [],
+    "last_round_date": "2025-10-24",
+    "estimated_runway": null
+  },
+  "growth_metrics": {
+    "headcount": null,
+    "headcount_growth_yoy": null,
+    "open_roles": null,
+    "recent_hires": null,
+    "office_locations": [],
+    "geographic_expansion": "Not disclosed",
+    "press_mentions_12m": null,
+    "website_traffic_trend": "Not disclosed",
+    "partnerships_count": 0,
+    "recent_partnerships": [],
+    "product_launches_12m": 0,
+    "recent_products": [],
+    "customer_growth": "Not disclosed",
+    "revenue_info": "Not disclosed"
+  },
+  "visibility": {
+    "news_mentions_30d": null,
+    "sentiment_score": null,
+    "github_stars": null,
+    "github_url": null,
+    "glassdoor_rating": null,
+    "glassdoor_reviews": null,
+    "awards": [],
+    "media_coverage": []
+  },
+  "events": [
+    {
+      "date": "2025-10-08",
+      "event_type": "product_launch",
+      "title": "MirageLSD Released on Crusoe Cloud",
+      "description": "Decart's real-time AI video model is now available on Crusoe Cloud.",
+      "source": null
+    },
+    {
+      "date": "2025-09-22",
+      "event_type": "acquisition",
+      "title": "Atero Acquisition Announcement",
+      "description": "Q&A with Alon Yariv on the Atero acquisition and the future of Crusoe Cloud.",
+      "source": null
+    },
+    {
+      "date": "2025-08-13",
+      "event_type": "partnership",
+      "title": "Partnership with Union.ai",
+      "description": "Sustainable AI at scale: Crusoe Cloud + Union.ai deliver clean compute with powerful orchestration.",
+      "source": null
+    }
+  ],
+  "funding_rounds": [
+    {
+      "date": "2025-10-24",
+      "stage": "series_d_plus",
+      "amount": "$1.375 billion",
+      "amount_numeric": 1375.0,
+      "lead_investor": null,
+      "other_investors": [],
+      "valuation": "above $10 billion",
+      "source": null
+    }
+  ],
+  "leadership": [],
+  "products": [],
+  "disclosure_gaps": {
+    "missing_fields": [
+      "Founded year",
+      "Headcount",
+      "Headcount growth rate",
+      "Customer count",
+      "Revenue"
+    ],
+    "confidence_notes": {}
+  },
+  "data_sources": [
+    "Website: https://www.crusoe.ai"
+  ],
+  "extracted_at": "2025-11-06T11:15:31.925411Z",
+  "analyst_notes": null,
+  "risks": [],
+  "opportunities": []
+}
