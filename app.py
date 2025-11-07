@@ -9,14 +9,26 @@ from pydantic import BaseModel
 from pathlib import Path
 from typing import Optional, List
 import os
+import json
 from openai import OpenAI
 from dotenv import load_dotenv
 
 from src.vector_db_pinecone import PineconeRetriever
 from src.utils import logger, load_json, ScraperConfig
 
+from google.cloud import storage
+
 # Load environment
 load_dotenv()
+
+# Environment configuration
+USE_GCS = os.getenv("USE_GCS", "false").lower() == "true"
+GCS_BUCKET = os.getenv("GCS_BUCKET", "pe-dashboard-data")
+
+logger.info(f"🚀 Starting PE Dashboard API")
+logger.info(f"📦 Storage mode: {'GCS' if USE_GCS else 'Local filesystem'}")
+if USE_GCS:
+    logger.info(f"☁️  GCS Bucket: {GCS_BUCKET}")
 
 app = FastAPI(
     title="PE Dashboard API",
@@ -57,45 +69,191 @@ class DashboardResponse(BaseModel):
     model_used: str
 
 
+# ============================================================================
+# GCS HELPER FUNCTIONS
+# ============================================================================
+
+def get_gcs_client():
+    """Get GCS client with error handling"""
+    try:
+        return storage.Client()
+    except Exception as e:
+        logger.error(f"❌ Failed to initialize GCS client: {e}")
+        return None
+
+
+def list_company_files_from_gcs(bucket_name: str) -> list:
+    """List all company JSON files in GCS bucket"""
+    try:
+        client = get_gcs_client()
+        if not client:
+            return []
+        
+        bucket = client.bucket(bucket_name)
+        blobs = bucket.list_blobs(prefix='structured/')
+        
+        files = []
+        for blob in blobs:
+            if blob.name.endswith('.json') and blob.name != 'structured/':
+                files.append(blob.name)
+        
+        logger.info(f"✅ Found {len(files)} files in GCS bucket {bucket_name}")
+        return files
+    
+    except Exception as e:
+        logger.error(f"❌ Error listing GCS files: {e}")
+        return []
+
+
+def load_company_from_gcs(bucket_name: str, company_id: str) -> dict:
+    """Load company JSON from GCS"""
+    try:
+        client = get_gcs_client()
+        if not client:
+            return None
+        
+        bucket = client.bucket(bucket_name)
+        blob = bucket.blob(f'structured/{company_id}.json')
+        
+        if not blob.exists():
+            logger.warning(f"⚠️  Company {company_id} not found in GCS")
+            return None
+        
+        content = blob.download_as_text()
+        data = json.loads(content)
+        logger.info(f"✅ Loaded {company_id} from GCS")
+        return data
+    
+    except Exception as e:
+        logger.error(f"❌ Error loading {company_id} from GCS: {e}")
+        return None
+
+
+def load_company_from_local(company_id: str) -> dict:
+    """Load company JSON from local filesystem"""
+    try:
+        file_path = ScraperConfig.DATA_DIR / "structured" / f"{company_id}.json"
+        if not file_path.exists():
+            logger.warning(f"⚠️  Company {company_id} not found locally")
+            return None
+        
+        data = load_json(file_path)
+        logger.info(f"✅ Loaded {company_id} from local filesystem")
+        return data
+    
+    except Exception as e:
+        logger.error(f"❌ Error loading {company_id} locally: {e}")
+        return None
+
+
+def load_company_data(company_id: str) -> dict:
+    """Load company data from GCS or local (based on USE_GCS flag)"""
+    if USE_GCS:
+        return load_company_from_gcs(GCS_BUCKET, company_id)
+    else:
+        return load_company_from_local(company_id)
+
+
+# ============================================================================
+# API ENDPOINTS
+# ============================================================================
+
 @app.get("/")
 def read_root():
     """Root endpoint"""
     return {
         "message": "PE Dashboard API",
         "version": "1.0.0",
+        "storage_mode": "GCS" if USE_GCS else "Local",
         "endpoints": {
             "companies": "/companies",
             "rag_dashboard": "/dashboard/rag",
-            "structured_dashboard": "/dashboard/structured"
+            "structured_dashboard": "/dashboard/structured",
+            "health": "/health"
         }
     }
 
 
 @app.get("/companies")
 def list_companies():
-    """List all available companies"""
-    
-    structured_dir = ScraperConfig.DATA_DIR / "structured"
-    
-    if not structured_dir.exists():
-        return {"companies": [], "count": 0}
+    """List all available companies from GCS or local storage"""
     
     companies = []
-    for json_file in sorted(structured_dir.glob("*.json")):
+    
+    if USE_GCS:
+        # Production: Read from GCS
+        logger.info(f"📋 Listing companies from GCS bucket: {GCS_BUCKET}")
+        
         try:
-            data = load_json(json_file)
-            companies.append({
-                "company_id": data['company']['company_id'],
-                "company_name": data['company']['company_name'],
-                "website": data['company']['website'],
-                "category": data['company'].get('category', 'Not disclosed')
-            })
+            client = get_gcs_client()
+            if not client:
+                return {
+                    "companies": [],
+                    "count": 0,
+                    "storage_mode": "GCS",
+                    "error": "GCS client initialization failed"
+                }
+            
+            bucket = client.bucket(GCS_BUCKET)
+            blobs = bucket.list_blobs(prefix='structured/')
+            
+            for blob in blobs:
+                if blob.name.endswith('.json') and blob.name != 'structured/':
+                    try:
+                        content = blob.download_as_text()
+                        data = json.loads(content)
+                        companies.append({
+                            "company_id": data['company']['company_id'],
+                            "company_name": data['company']['company_name'],
+                            "website": data['company']['website'],
+                            "category": data['company'].get('category', 'Not disclosed')
+                        })
+                    except Exception as e:
+                        logger.error(f"❌ Error loading {blob.name} from GCS: {e}")
+            
+            logger.info(f"✅ Successfully loaded {len(companies)} companies from GCS")
+        
         except Exception as e:
-            logger.error(f"Error loading {json_file}: {e}")
+            logger.error(f"❌ Error listing companies from GCS: {e}")
+            return {
+                "companies": [],
+                "count": 0,
+                "storage_mode": "GCS",
+                "error": str(e)
+            }
+    
+    else:
+        # Development: Read from local filesystem
+        logger.info("📋 Listing companies from local filesystem")
+        
+        structured_dir = ScraperConfig.DATA_DIR / "structured"
+        
+        if not structured_dir.exists():
+            logger.warning(f"⚠️  Local structured directory not found: {structured_dir}")
+            return {
+                "companies": [],
+                "count": 0,
+                "storage_mode": "Local"
+            }
+        
+        for json_file in sorted(structured_dir.glob("*.json")):
+            try:
+                data = load_json(json_file)
+                companies.append({
+                    "company_id": data['company']['company_id'],
+                    "company_name": data['company']['company_name'],
+                    "website": data['company']['website'],
+                    "category": data['company'].get('category', 'Not disclosed')
+                })
+            except Exception as e:
+                logger.error(f"❌ Error loading {json_file}: {e}")
+        
+        logger.info(f"✅ Successfully loaded {len(companies)} companies from local filesystem")
     
     return {
         "companies": companies,
-        "count": len(companies)
+        "count": len(companies),
+        "storage_mode": "GCS" if USE_GCS else "Local"
     }
 
 
@@ -107,6 +265,8 @@ def generate_rag_dashboard(request: DashboardRequest):
     """
     
     try:
+        logger.info(f"🔍 Generating RAG dashboard for: {request.company_id}")
+        
         # Initialize retriever
         retriever = PineconeRetriever()
         
@@ -142,6 +302,8 @@ def generate_rag_dashboard(request: DashboardRequest):
                 detail=f"No data found for company: {request.company_id}"
             )
         
+        logger.info(f"📚 Retrieved {len(unique_chunks)} unique chunks from Pinecone")
+        
         # Combine chunks into context
         context = "\n\n---\n\n".join([
             f"SOURCE: {chunk['metadata']['page_type']}\n{chunk['text']}"
@@ -157,6 +319,8 @@ RETRIEVED CONTEXT:
 {context}
 
 Generate the complete 8-section investor dashboard now."""
+        
+        logger.info(f"🤖 Calling OpenAI API with model: {request.model}")
         
         response = openai_client.chat.completions.create(
             model=request.model,
@@ -176,6 +340,8 @@ Generate the complete 8-section investor dashboard now."""
         
         dashboard = response.choices[0].message.content
         
+        logger.info(f"✅ Successfully generated RAG dashboard for {request.company_id}")
+        
         return DashboardResponse(
             company_id=request.company_id,
             company_name=request.company_id,
@@ -184,8 +350,10 @@ Generate the complete 8-section investor dashboard now."""
             model_used=request.model
         )
         
+    except HTTPException:
+        raise
     except Exception as e:
-        logger.error(f"Error generating RAG dashboard: {e}")
+        logger.error(f"❌ Error generating RAG dashboard: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -193,20 +361,22 @@ Generate the complete 8-section investor dashboard now."""
 def generate_structured_dashboard(request: DashboardRequest):
     """
     Lab 8 - Generate dashboard using Structured pipeline
-    Uses pre-extracted Pydantic payload
+    Uses pre-extracted Pydantic payload from GCS or local storage
     """
     
     try:
-        # Load structured payload
-        payload_file = ScraperConfig.DATA_DIR / "structured" / f"{request.company_id}.json"
+        logger.info(f"📊 Generating Structured dashboard for: {request.company_id}")
         
-        if not payload_file.exists():
+        # Load from GCS or local based on USE_GCS flag
+        payload = load_company_data(request.company_id)
+        
+        if not payload:
             raise HTTPException(
                 status_code=404,
                 detail=f"No structured data found for: {request.company_id}"
             )
         
-        payload = load_json(payload_file)
+        logger.info(f"✅ Loaded structured data for {request.company_id} from {'GCS' if USE_GCS else 'local'}")
         
         # Helper function to format funding rounds
         def format_rounds(rounds):
@@ -289,6 +459,8 @@ STRUCTURED DATA:
 
 Generate the complete 8-section investor dashboard now."""
         
+        logger.info(f"🤖 Calling OpenAI API with model: {request.model}")
+        
         response = openai_client.chat.completions.create(
             model=request.model,
             messages=[
@@ -307,6 +479,8 @@ Generate the complete 8-section investor dashboard now."""
         
         dashboard = response.choices[0].message.content
         
+        logger.info(f"✅ Successfully generated Structured dashboard for {request.company_id}")
+        
         return DashboardResponse(
             company_id=request.company_id,
             company_name=payload['company']['company_name'],
@@ -318,14 +492,19 @@ Generate the complete 8-section investor dashboard now."""
     except HTTPException:
         raise
     except Exception as e:
-        logger.error(f"Error generating structured dashboard: {e}")
+        logger.error(f"❌ Error generating structured dashboard: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.get("/health")
 def health_check():
     """Health check endpoint"""
-    return {"status": "healthy", "version": "1.0.0"}
+    return {
+        "status": "healthy",
+        "version": "1.0.0",
+        "storage_mode": "GCS" if USE_GCS else "Local",
+        "gcs_bucket": GCS_BUCKET if USE_GCS else None
+    }
 
 
 if __name__ == "__main__":
