@@ -55,11 +55,24 @@ resource "google_composer_environment" "airflow" {
     software_config {
       image_version = "composer-2-airflow-2"
       
+      # ========================================
+      # AIRFLOW CONFIGURATION OVERRIDES
+      # Enable parallel task execution
+      # ========================================
+      airflow_config_overrides = {
+        core-parallelism                 = "32"   # Max tasks across all DAGs
+        core-dag_concurrency             = "16"   # Max concurrent tasks per DAG
+        core-max_active_tasks_per_dag    = "16"   # Max active tasks per DAG
+        core-max_active_runs_per_dag     = "1"    # Only 1 DAG run at a time
+        scheduler-max_tis_per_query      = "16"   # Scheduler query efficiency
+        #celery-worker_autoscale          = "8,2"  # Workers scale from 2 to 8
+      }
+      
       # Python packages
       pypi_packages = {
         openai               = ">=1.3.0"
         instructor           = ">=0.4.0"
-        pinecone      = ">=3.0.0"
+        pinecone             = ">=3.0.0"  # Fixed from pinecone-client
         google-cloud-storage = ">=2.10.0"
         requests             = ">=2.31.0"
         beautifulsoup4       = ">=4.12.0"
@@ -81,32 +94,32 @@ resource "google_composer_environment" "airflow" {
       }
     }
     
-    # Workloads configuration
+    # Workloads configuration (Increased resources)
     workloads_config {
       scheduler {
-        cpu        = 0.5
-        memory_gb  = 1.875
-        storage_gb = 1
+        cpu        = 1        # Increased from 0.5
+        memory_gb  = 3.75     # Increased from 1.875
+        storage_gb = 2        # Increased from 1
         count      = 1
       }
       
       web_server {
-        cpu        = 0.5
-        memory_gb  = 1.875
-        storage_gb = 1
+        cpu        = 1        # Increased from 0.5
+        memory_gb  = 3.75     # Increased from 1.875
+        storage_gb = 2        # Increased from 1
       }
       
       worker {
-        cpu        = 0.5
-        memory_gb  = 1.875
-        storage_gb = 1
-        min_count  = 1
-        max_count  = 3
+        cpu        = 2        # Increased from 0.5 (4x)
+        memory_gb  = 7.5      # Increased from 1.875 (4x)
+        storage_gb = 5        # Increased from 1 (5x)
+        min_count  = 2        # Start with 2 workers (was 1)
+        max_count  = 6        # Scale up to 6 workers (was 3)
       }
     }
     
-    # Environment size
-    environment_size = "ENVIRONMENT_SIZE_SMALL"
+    # Environment size (Upgraded to MEDIUM)
+    environment_size = "ENVIRONMENT_SIZE_MEDIUM"
     
     # Node configuration with service account
     node_config {
