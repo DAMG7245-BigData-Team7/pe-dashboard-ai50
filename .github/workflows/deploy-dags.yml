@@ -1,0 +1,62 @@
+name: Deploy DAGs to Cloud Composer
+
+on:
+  push:
+    branches:
+      - main
+      - Sahil
+    paths:
+      - 'dags/**'
+      - 'src/**'
+      - 'data/forbes_ai50_seed.json'
+
+jobs:
+  deploy-dags:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+      
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+      
+      - name: Get Composer Bucket
+        id: composer
+        run: |
+          BUCKET=$(gcloud composer environments describe pe-dashboard-airflow \
+            --location us-central1 \
+            --format="get(config.dagGcsPrefix)")
+          echo "bucket=$BUCKET" >> $GITHUB_OUTPUT
+      
+      - name: Upload Source Code
+        run: |
+          echo "📦 Uploading source code..."
+          gsutil -m rsync -r src/ ${{ steps.composer.outputs.bucket }}/src/
+      
+      - name: Upload DAG Files
+        run: |
+          echo "📋 Uploading DAG files..."
+          gsutil -m cp dags/*.py ${{ steps.composer.outputs.bucket }}/
+      
+      - name: Upload Seed Data
+        run: |
+          echo "📊 Uploading seed data..."
+          gsutil cp data/forbes_ai50_seed.json ${{ steps.composer.outputs.bucket }}/data/forbes_ai50_seed.json
+          gsutil cp data/forbes_ai50_seed.json gs://pe-dashboard-477417-pe-dashboard-data/forbes_ai50_seed.json
+      
+      - name: Success Message
+        run: |
+          echo "=========================================="
+          echo "✅ DAGs deployed successfully!"
+          echo "=========================================="
+          echo ""
+          echo "Airflow UI: https://f2b9d3a6c5b446cf9c45a9e0ae00497c-dot-us-central1.composer.googleusercontent.com"
+          echo ""
+          echo "Wait 2-3 minutes for DAGs to appear in UI"
+          echo "=========================================="

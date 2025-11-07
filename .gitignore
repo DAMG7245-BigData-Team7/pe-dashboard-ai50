@@ -1,0 +1,168 @@
+# ============================================
+# Python
+# ============================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environments
+venv/
+env/
+ENV/
+.venv/
+virtualenv/
+
+# Distribution / packaging
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+
+# ============================================
+# Environment Variables & Secrets
+# ============================================
+.env
+.env.local
+.env.*.local
+*.env
+
+# ============================================
+# Data & Logs
+# ============================================
+# Large scraped data
+data/raw/
+data/vector_db/
+data/dashboards/
+data/structured/
+
+# Logs
+logs/
+*.log
+
+# ============================================
+# Terraform
+# ============================================
+# Terraform state files (in terraform/ folder)
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/*.tfstate.backup
+terraform/.terraform.lock.hcl
+
+# Terraform variable files (contains secrets)
+terraform/terraform.tfvars
+terraform/*.auto.tfvars
+
+# Crash log files
+terraform/crash.log
+terraform/crash.*.log
+
+# Terraform state files (in root directory - should not exist but just in case)
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+.terraform.lock.hcl
+.terraform/
+
+# ============================================
+# GCP & Cloud
+# ============================================
+# Service account keys and JSON configs
+*.json
+!data/forbes_ai50_seed.json
+!package*.json
+
+# GCP credentials
+gcp-key.json
+github-actions-key.json
+service-account-key.json
+
+# ============================================
+# Docker
+# ============================================
+.dockerignore
+
+# ============================================
+# IDE & Editors
+# ============================================
+# VSCode
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Sublime
+*.sublime-project
+*.sublime-workspace
+
+# ============================================
+# OS
+# ============================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ============================================
+# Testing
+# ============================================
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+
+# ============================================
+# Jupyter Notebooks
+# ============================================
+.ipynb_checkpoints/
+*.ipynb
+
+# ============================================
+# Airflow (if using)
+# ============================================
+airflow.db
+airflow.cfg
+airflow-webserver.pid
+dags/__pycache__/
+
+# ============================================
+# Misc
+# ============================================
+*.bak
+*.tmp
+*.temp
+*~
+setup_gcp.sh
