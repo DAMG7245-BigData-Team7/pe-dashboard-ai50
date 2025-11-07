@@ -416,6 +416,8 @@ with DAG(
         python_callable=update_pinecone,
         execution_timeout=timedelta(hours=1),
     )
+
+    
     
     # ========================================
     # DEFINE DEPENDENCIES
