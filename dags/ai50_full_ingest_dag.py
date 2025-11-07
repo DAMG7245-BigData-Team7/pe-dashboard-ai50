@@ -163,32 +163,75 @@ def scrape_news_and_apis(**context):
 
 
 def extract_structured_data(**context):
-    """Task 4: Extract structured data with LLM + Instructor"""
+    """Task 4: Extract structured data with LLM - BATCHED"""
     
     print("\n" + "=" * 80)
-    print("TASK 4: STRUCTURED EXTRACTION (LLM)")
+    print("TASK 4: STRUCTURED EXTRACTION (BATCHED)")
     print("=" * 80)
     
     try:
         extractor = StructuredExtractor(model="gpt-4o-mini")
         
-        # Extract from /tmp where we saved scraped data
-        output_dir = Path("/tmp/data/structured")
-        extractor.extract_all_companies(output_dir=output_dir)
+        # Get all company folders
+        raw_dir = Path("/tmp/data/raw")
+        company_folders = sorted([f for f in raw_dir.iterdir() if f.is_dir()])
         
-        # Count successful extractions
-        if output_dir.exists():
-            extracted_count = len(list(output_dir.glob("*.json")))
-            print(f"\n✅ Extracted {extracted_count} companies")
+        # Process in batches of 10
+        batch_size = 10
+        total = len(company_folders)
         
-        print("=" * 80)
+        for batch_start in range(0, total, batch_size):
+            batch_end = min(batch_start + batch_size, total)
+            batch = company_folders[batch_start:batch_end]
+            
+            print(f"\n📦 Processing batch {batch_start//batch_size + 1}: Companies {batch_start+1}-{batch_end}")
+            
+            for company_folder in batch:
+                company_id = company_folder.name
+                
+                # Find run folder
+                initial_folder = company_folder / "initial"
+                run_folder = None
+                
+                if initial_folder.exists():
+                    run_folders = sorted(initial_folder.iterdir(), reverse=True)
+                    if run_folders:
+                        run_folder = run_folders[0]
+                
+                if run_folder:
+                    try:
+                        payload = extractor.extract_company(company_id, run_folder)
+                        
+                        if payload:
+                            output_dir = Path("/tmp/data/structured")
+                            output_dir.mkdir(parents=True, exist_ok=True)
+                            output_file = output_dir / f"{company_id}.json"
+                            
+                            payload_dict = payload.model_dump(mode='json')
+                            save_json(payload_dict, output_file)
+                            
+                            print(f"  ✅ {company_id}")
+                    
+                    except Exception as e:
+                        print(f"  ❌ {company_id}: {str(e)[:80]}")
+                
+                # Rate limiting between companies
+                import time
+                time.sleep(3)  # 3 seconds between each company
+            
+            # Longer delay between batches
+            if batch_end < total:
+                print(f"\n⏳ Batch complete. Waiting 30s before next batch...")
+                import time
+                time.sleep(30)
+        
+        print("\n✅ All batches complete")
     
     except Exception as e:
         print(f"❌ Extraction error: {e}")
         import traceback
         traceback.print_exc()
         raise
-
 
 def upload_to_gcs(**context):
     """Task 5: Upload structured data to GCS bucket"""
@@ -315,9 +358,11 @@ with DAG(
     
     # Task 4: Extract structured data
     task_extract = PythonOperator(
-        task_id='extract_structured_data',
-        python_callable=extract_structured_data,
-        doc_md="Extract structured Pydantic objects using OpenAI + Instructor",
+    task_id='extract_structured_data',
+    python_callable=extract_structured_data,
+    execution_timeout=timedelta(hours=3),  # ← ADD THIS (default is 6h but be explicit)
+    retries=1,  # ← Reduce retries (don't want to waste API calls)
+    retry_delay=timedelta(minutes=15),
     )
     
     # Task 5: Upload to GCS

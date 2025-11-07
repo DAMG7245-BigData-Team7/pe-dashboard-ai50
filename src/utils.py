@@ -13,12 +13,11 @@ import logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('logs/scraper.log'),
-        logging.StreamHandler()
-    ]
+    handlers=[logging.StreamHandler()]  # Console only, no file
 )
+
 logger = logging.getLogger(__name__)
+
 
 class ScraperConfig:
     """Configuration for scraper behavior"""

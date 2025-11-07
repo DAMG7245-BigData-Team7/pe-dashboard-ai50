@@ -59,7 +59,7 @@ resource "google_composer_environment" "airflow" {
       pypi_packages = {
         openai               = ">=1.3.0"
         instructor           = ">=0.4.0"
-        pinecone-client      = ">=3.0.0"
+        pinecone      = ">=3.0.0"
         google-cloud-storage = ">=2.10.0"
         requests             = ">=2.31.0"
         beautifulsoup4       = ">=4.12.0"
