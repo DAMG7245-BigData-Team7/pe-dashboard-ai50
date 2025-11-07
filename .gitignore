@@ -42,9 +42,7 @@ wheels/
 data/raw/
 data/vector_db/
 data/dashboards/
-
-# Keep small structured data (optional)
-# data/structured/
+data/structured/
 
 # Logs
 logs/
@@ -53,7 +51,7 @@ logs/
 # ============================================
 # Terraform
 # ============================================
-# Terraform state files
+# Terraform state files (in terraform/ folder)
 terraform/.terraform/
 terraform/*.tfstate
 terraform/*.tfstate.*
@@ -68,12 +66,6 @@ terraform/*.auto.tfvars
 terraform/crash.log
 terraform/crash.*.log
 
-terraform/.terraform/
-terraform/*.tfstate
-terraform/*.tfstate.*
-terraform/*.tfstate.backup
-terraform/.terraform.lock.hcl
-
 # Terraform state files (in root directory - should not exist but just in case)
 *.tfstate
 *.tfstate.*
@@ -84,10 +76,9 @@ terraform/.terraform.lock.hcl
 # ============================================
 # GCP & Cloud
 # ============================================
-# Service account keys (but ALLOW structured data JSONs)
+# Service account keys and JSON configs
 *.json
 !data/forbes_ai50_seed.json
-!data/structured/*.json          # ← ADDED: Allow structured company data
 !package*.json
 
 # GCP credentials
@@ -175,9 +166,3 @@ dags/__pycache__/
 *.temp
 *~
 setup_gcp.sh
-
-# Reports (can keep some for submission)
-# *.md
-# !README.md
-# !DEPLOYMENT.md
-# !EVAL.md

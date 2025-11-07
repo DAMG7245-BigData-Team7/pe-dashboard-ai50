@@ -1,6 +1,7 @@
 """
 Lab 5 - Structured Extraction with Instructor
 Extracts structured data from scraped text using LLM + Pydantic validation
+NOW INCLUDES: News articles, GitHub, LinkedIn, Crunchbase data
 """
 
 import instructor
@@ -53,17 +54,18 @@ class StructuredExtractor:
         logger.info(f"Initialized StructuredExtractor with model: {model}")
     
     def load_scraped_text(self, run_folder: Path) -> dict:
-        """Load all scraped text files - handles multiple folders per company"""
+        """Load all scraped text files - website pages AND news articles"""
         
         texts = {}
-        
-        # Check if run_folder is actually a company folder with multiple timestamp subfolders
-        # This handles the case where Lab1 scraper creates separate folders per page
         parent_folder = run_folder.parent
+        
+        # ========================================
+        # PART 1: Load Website Pages
+        # ========================================
         
         # Collect all .txt files from ALL timestamp folders in initial/
         if parent_folder.name == "initial":
-            logger.info(f"DEBUG: Multiple timestamp folders detected, merging content...")
+            logger.info(f"📄 Multiple timestamp folders detected, merging content...")
             for timestamp_folder in parent_folder.iterdir():
                 if timestamp_folder.is_dir():
                     for txt_file in timestamp_folder.glob("*.txt"):
@@ -78,7 +80,7 @@ class StructuredExtractor:
                                 content = f.read()
                                 if len(content) > 100:
                                     texts[page_type] = content[:15000]
-                                    logger.info(f"DEBUG: Loaded {page_type}.txt from {timestamp_folder.name}")
+                                    logger.info(f"  ✅ Loaded {page_type}.txt")
                         except Exception as e:
                             logger.warning(f"Could not read {txt_file}: {e}")
         else:
@@ -122,7 +124,86 @@ class StructuredExtractor:
                         except Exception as e:
                             logger.warning(f"Could not read {file_path}: {e}")
         
+        # ========================================
+        # PART 2: Load News Articles (NEW!)
+        # ========================================
+        
+        try:
+            # Navigate to company root: data/raw/{company_id}
+            if parent_folder.name == "initial":
+                company_folder = parent_folder.parent
+            else:
+                company_folder = run_folder.parent
+            
+            news_folder = company_folder / "news" / "articles"
+            
+            if news_folder.exists():
+                logger.info(f"📰 Loading news articles from {news_folder}")
+                
+                all_articles = []
+                article_files = sorted(news_folder.glob("article_*.txt"))
+                
+                for article_file in article_files:
+                    try:
+                        with open(article_file, 'r', encoding='utf-8', errors='ignore') as f:
+                            content = f.read()
+                            
+                            # Extract article content (skip header)
+                            # Articles have format: ===\nHEADER\n===\n\nCONTENT
+                            if '=' * 80 in content:
+                                parts = content.split('=' * 80)
+                                if len(parts) >= 3:
+                                    article_content = parts[2].strip()
+                                    if len(article_content) > 100:
+                                        all_articles.append(article_content)
+                            else:
+                                # No header, use full content
+                                if len(content) > 100:
+                                    all_articles.append(content)
+                    
+                    except Exception as e:
+                        logger.warning(f"Could not read {article_file}: {e}")
+                
+                if all_articles:
+                    # Combine all articles, limit total length
+                    texts['news'] = '\n\n---NEWS ARTICLE---\n\n'.join(all_articles)[:25000]
+                    logger.info(f"  ✅ Loaded {len(all_articles)} news articles ({len(texts['news'])} chars)")
+                else:
+                    logger.info(f"  ⚠️  No valid news articles found")
+            else:
+                logger.info(f"  ℹ️  No news folder found at {news_folder}")
+        
+        except Exception as e:
+            logger.warning(f"Error loading news articles: {e}")
+        
         return texts
+    
+    def load_news_data(self, run_folder: Path) -> Optional[dict]:
+        """Load news intelligence data (articles + GitHub + LinkedIn + Crunchbase)"""
+        try:
+            # Navigate to company root
+            parent_folder = run_folder.parent
+            if parent_folder.name == "initial":
+                company_folder = parent_folder.parent
+            else:
+                company_folder = run_folder.parent
+            
+            news_file = company_folder / "news" / "company_data.json"
+            
+            if news_file.exists():
+                data = load_json(news_file)
+                logger.info(f"📊 Loaded news intelligence data:")
+                logger.info(f"  - Articles: {len(data.get('articles', []))}")
+                logger.info(f"  - GitHub repos: {data.get('github', {}).get('public_repos', 0)}")
+                logger.info(f"  - LinkedIn followers: {data.get('linkedin', {}).get('followers', 0)}")
+                return data
+            else:
+                logger.info(f"  ℹ️  No news data file found at {news_file}")
+        
+        except Exception as e:
+            logger.warning(f"Error loading news data: {e}")
+        
+        return None
     
     def load_growth_momentum(self, run_folder: Path) -> Optional[dict]:
         """Load pre-extracted growth momentum data"""
@@ -144,7 +225,7 @@ class StructuredExtractor:
                 continue
         return None
     
-    def extract_company_info(self, company_name: str, texts: dict, metadata: dict) -> Company:
+    def extract_company_info(self, company_name: str, texts: dict, metadata: dict, news_data: dict = None) -> Company:
         """Extract core company information"""
         
         # Combine relevant text
@@ -156,7 +237,26 @@ HOMEPAGE:
 
 ABOUT PAGE:
 {texts.get('about', '')[:5000]}
+
+NEWS ARTICLES:
+{texts.get('news', '')[:3000]}
 """
+        
+        # Add external data if available
+        if news_data:
+            linkedin = news_data.get('linkedin', {})
+            crunchbase = news_data.get('crunchbase', {})
+            
+            if linkedin:
+                context += f"\n\nLINKEDIN DATA:\n"
+                context += f"Employees: {linkedin.get('employees', 'Not disclosed')}\n"
+                context += f"Industry: {linkedin.get('industry', 'Not disclosed')}\n"
+                context += f"Founded: {linkedin.get('founded', 'Not disclosed')}\n"
+            
+            if crunchbase:
+                context += f"\n\nCRUNCHBASE DATA:\n"
+                context += f"Description: {crunchbase.get('short_description', 'Not disclosed')}\n"
+                context += f"Founded: {crunchbase.get('founded_on', 'Not disclosed')}\n"
         
         prompt = f"""Extract core company information from the provided text.
 
@@ -213,7 +313,7 @@ Context:
                 description="Not disclosed"
             )
     
-    def extract_funding_rounds(self, texts: dict) -> list[FundingRound]:
+    def extract_funding_rounds(self, texts: dict, news_data: dict = None) -> list[FundingRound]:
         """Extract funding round information"""
         
         context = f"""
@@ -225,6 +325,21 @@ ABOUT PAGE:
 
 BLOG/NEWS:
 {texts.get('blog', '')[:3000]}
+
+NEWS ARTICLES:
+{texts.get('news', '')[:5000]}
+"""
+        
+        # Add Crunchbase data if available
+        if news_data and news_data.get('crunchbase'):
+            cb = news_data['crunchbase']
+            context += f"""
+
+CRUNCHBASE DATA:
+Total Funding: {cb.get('funding_total', 'Not disclosed')} {cb.get('funding_total_currency', '')}
+Number of Rounds: {cb.get('num_funding_rounds', 'Not disclosed')}
+Last Funding Type: {cb.get('last_funding_type', 'Not disclosed')}
+Last Funding Date: {cb.get('last_funding_at', 'Not disclosed')}
 """
         
         prompt = f"""Extract all funding rounds mentioned in the text.
@@ -258,7 +373,7 @@ Context:
             logger.error(f"Error extracting funding rounds: {e}")
             return []
     
-    def extract_growth_metrics(self, texts: dict, growth_momentum: Optional[dict]) -> GrowthMetrics:
+    def extract_growth_metrics(self, texts: dict, growth_momentum: Optional[dict], news_data: dict = None) -> GrowthMetrics:
         """Extract growth and momentum indicators"""
         
         context = f"""
@@ -271,9 +386,24 @@ CAREERS PAGE:
 BLOG/NEWS:
 {texts.get('blog', '')[:2000]}
 
+NEWS ARTICLES:
+{texts.get('news', '')[:3000]}
+
 PRE-EXTRACTED DATA:
 {growth_momentum if growth_momentum else 'None available'}
 """
+        
+        # Add LinkedIn and Crunchbase employee data
+        if news_data:
+            linkedin = news_data.get('linkedin', {})
+            crunchbase = news_data.get('crunchbase', {})
+            
+            if linkedin or crunchbase:
+                context += "\n\nEXTERNAL DATA:\n"
+                if linkedin.get('employees'):
+                    context += f"LinkedIn Employees: {linkedin['employees']}\n"
+                if crunchbase.get('employee_count'):
+                    context += f"Crunchbase Employees: {crunchbase['employee_count']}\n"
         
         prompt = f"""Extract growth metrics and momentum indicators.
 
@@ -322,6 +452,9 @@ BLOG/NEWS:
 
 ABOUT PAGE:
 {texts.get('about', '')[:2000]}
+
+NEWS ARTICLES:
+{texts.get('news', '')[:8000]}
 """
         
         prompt = f"""Extract major company events from the text.
@@ -406,6 +539,24 @@ Context:
             headcount=growth_metrics.headcount
         )
     
+    def create_visibility(self, news_data: dict = None) -> Visibility:
+        """Create visibility metrics from news data"""
+        visibility = Visibility()
+        
+        if news_data:
+            # GitHub data
+            github = news_data.get('github', {})
+            if github:
+                visibility.github_stars = github.get('total_stars', 0)
+                visibility.github_url = f"https://github.com/{github.get('username')}" if github.get('username') else None
+            
+            # Article count
+            articles = news_data.get('articles', [])
+            if articles:
+                visibility.news_mentions_30d = len(articles)
+        
+        return visibility
+    
     def extract_company(self, company_name: str, run_folder: Path) -> Optional[CompanyPayload]:
         """Extract complete structured data for one company"""
         
@@ -413,45 +564,54 @@ Context:
         logger.info(f"Extracting structured data for: {company_name}")
         logger.info(f"{'='*60}\n")
         
-        # DEBUG: Show what folder we're using
-        logger.info(f"DEBUG: Using run folder: {run_folder}")
-        logger.info(f"DEBUG: Folder exists: {run_folder.exists()}")
-        if run_folder.exists():
-            logger.info(f"DEBUG: Files in folder: {list(run_folder.iterdir())[:10]}")
-        
         try:
             # Load all available data
             texts = self.load_scraped_text(run_folder)
             growth_momentum = self.load_growth_momentum(run_folder)
             metadata = self.load_metadata(run_folder)
+            news_data = self.load_news_data(run_folder)  # NEW!
             
-            # DEBUG: Show what we loaded
-            logger.info(f"DEBUG: Text files loaded: {list(texts.keys())}")
-            logger.info(f"DEBUG: Growth momentum: {'Found' if growth_momentum else 'Not found'}")
-            logger.info(f"DEBUG: Metadata: {'Found' if metadata else 'Not found'}")
+            logger.info(f"📊 Data loaded:")
+            logger.info(f"  - Text files: {list(texts.keys())}")
+            logger.info(f"  - Growth momentum: {'✅' if growth_momentum else '❌'}")
+            logger.info(f"  - Metadata: {'✅' if metadata else '❌'}")
+            logger.info(f"  - News data: {'✅' if news_data else '❌'}")
             
             if not texts:
                 logger.error(f"No text content found for {company_name}")
                 return None
             
-            logger.info(f"Loaded {len(texts)} text files")
+            # Extract each component (now with news data)
+            logger.info("\n🔍 Extracting company info...")
+            company = self.extract_company_info(company_name, texts, metadata, news_data)
             
-            # Extract each component
-            logger.info("Extracting company info...")
-            company = self.extract_company_info(company_name, texts, metadata)
+            logger.info("💰 Extracting funding rounds...")
+            funding_rounds = self.extract_funding_rounds(texts, news_data)
             
-            logger.info("Extracting funding rounds...")
-            funding_rounds = self.extract_funding_rounds(texts)
+            logger.info("📈 Extracting growth metrics...")
+            growth_metrics = self.extract_growth_metrics(texts, growth_momentum, news_data)
             
-            logger.info("Extracting growth metrics...")
-            growth_metrics = self.extract_growth_metrics(texts, growth_momentum)
-            
-            logger.info("Extracting events...")
+            logger.info("📅 Extracting events...")
             events = self.extract_events(texts)
+            
+            logger.info("👁️  Creating visibility metrics...")
+            visibility = self.create_visibility(news_data)
             
             # Create derived components
             investor_profile = self.create_investor_profile(funding_rounds)
             snapshot = self.create_snapshot(funding_rounds, growth_metrics)
+            
+            # Build data sources list
+            data_sources = [f"Website: {company.website}"]
+            if news_data:
+                if news_data.get('articles'):
+                    data_sources.append(f"News Articles: {len(news_data['articles'])} articles")
+                if news_data.get('github', {}).get('username'):
+                    data_sources.append(f"GitHub: {news_data['github']['username']}")
+                if news_data.get('linkedin'):
+                    data_sources.append("LinkedIn Company Page")
+                if news_data.get('crunchbase'):
+                    data_sources.append("Crunchbase")
             
             # Create payload
             payload = CompanyPayload(
@@ -459,23 +619,26 @@ Context:
                 snapshot=snapshot,
                 investor_profile=investor_profile,
                 growth_metrics=growth_metrics,
-                visibility=Visibility(),  # Placeholder - would need external APIs
+                visibility=visibility,
                 events=events,
                 funding_rounds=funding_rounds,
                 leadership=[],  # Would need LinkedIn scraping
                 products=[],  # Could extract from product page
                 disclosure_gaps=DisclosureGaps(),  # Will populate below
-                data_sources=[f"Website: {company.website}"],
+                data_sources=data_sources,
                 extracted_at=get_timestamp()
             )
             
             # Auto-detect disclosure gaps
             payload.disclosure_gaps = create_disclosure_gaps(payload)
             
-            logger.info(f"✓ Extraction complete")
+            logger.info(f"\n✅ Extraction complete:")
             logger.info(f"  - Funding rounds: {len(funding_rounds)}")
             logger.info(f"  - Events: {len(events)}")
+            logger.info(f"  - GitHub stars: {visibility.github_stars or 0}")
+            logger.info(f"  - News mentions: {visibility.news_mentions_30d or 0}")
             logger.info(f"  - Disclosure gaps: {len(payload.disclosure_gaps.missing_fields)}")
+            logger.info(f"  - Data sources: {len(data_sources)}")
             
             return payload
             
@@ -552,6 +715,8 @@ Context:
                     'company_id': company_id,
                     'company_name': payload.company.company_name,
                     'status': 'success',
+                    'has_news_data': bool(payload.visibility.news_mentions_30d),
+                    'has_github': bool(payload.visibility.github_stars),
                     'output_file': str(output_file)
                 })
                 successful += 1
@@ -568,6 +733,8 @@ Context:
             'total_companies': total,
             'successful': successful,
             'failed': failed,
+            'companies_with_news': len([r for r in results if r.get('has_news_data')]),
+            'companies_with_github': len([r for r in results if r.get('has_github')]),
             'output_directory': str(output_dir),
             'results': results
         }
@@ -581,6 +748,8 @@ Context:
         logger.info(f"Total: {total}")
         logger.info(f"Successful: {successful}")
         logger.info(f"Failed: {failed}")
+        logger.info(f"With news data: {report['companies_with_news']}")
+        logger.info(f"With GitHub data: {report['companies_with_github']}")
         logger.info(f"Success rate: {successful/total*100:.1f}%")
         logger.info(f"Output: {output_dir}")
         logger.info(f"Report: {report_file}")
@@ -633,7 +802,7 @@ if __name__ == "__main__":
                 payload_dict = payload.model_dump(mode='json')
                 save_json(payload_dict, output_file)
                 
-                logger.info(f"\n✓ Saved to: {output_file}")
+                logger.info(f"\n✅ Saved to: {output_file}")
     else:
         # Extract all companies
         output_dir = Path(args.output_dir) if args.output_dir else None
