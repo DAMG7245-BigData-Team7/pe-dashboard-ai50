@@ -68,6 +68,19 @@ terraform/*.auto.tfvars
 terraform/crash.log
 terraform/crash.*.log
 
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/*.tfstate.backup
+terraform/.terraform.lock.hcl
+
+# Terraform state files (in root directory - should not exist but just in case)
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+.terraform.lock.hcl
+.terraform/
+
 # ============================================
 # GCP & Cloud
 # ============================================
