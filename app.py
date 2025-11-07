@@ -23,7 +23,7 @@ load_dotenv()
 
 # Environment configuration
 USE_GCS = os.getenv("USE_GCS", "false").lower() == "true"
-GCS_BUCKET = os.getenv("GCS_BUCKET", "pe-dashboard-data")
+GCS_BUCKET = os.getenv("DATA_BUCKET", "pe-dashboard-data")
 
 logger.info(f"🚀 Starting PE Dashboard API")
 logger.info(f"📦 Storage mode: {'GCS' if USE_GCS else 'Local filesystem'}")

@@ -30,7 +30,8 @@ resource "google_project_service" "required_apis" {
     "containerregistry.googleapis.com",
     "cloudbuild.googleapis.com",
     "secretmanager.googleapis.com",
-    "storage.googleapis.com"  # Added for GCS
+    "storage.googleapis.com",  # Added for GCS
+    "composer.googleapis.com"
   ])
   
   service            = each.key
@@ -207,7 +208,7 @@ resource "google_cloud_run_v2_service" "fastapi" {
       }
       
       env {
-        name  = "GCS_BUCKET"
+        name  = "DATA_BUCKET"
         value = google_storage_bucket.data_bucket.name
       }
       
