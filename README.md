@@ -1,7 +1,7 @@
 # 🚀 Project ORBIT — PE Dashboard for Forbes AI 50  
 ### *DAMG7245 — Assignment 2 | Northeastern University*
 
-> 🟢 **Live Dashboard:** [https://pe-dashboard-ui-ca7qaibdpa-uc.a.run.app/]
+> 🟢 **Live Dashboard:** *[https://pe-dashboard-ui-ca7qaibdpa-uc.a.run.app/]*
 > 🎥 **Demo Video:** *[https://northeastern-my.sharepoint.com/:v:/g/personal/gandhi_di_northeastern_edu/ERbw5r7rYJ9DmqTFlHo7Kp8BJcuYJRMsHnNscO-dYMLyaA?e=xmmzAs&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D]*  
 
 ---
