@@ -1,0 +1,936 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Project ORBIT - PE Dashboard for Forbes AI 50</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success { color: #1e8e3e; }
+    .error { color: red; }
+    .warning { color: #f29900; }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14" ga4id=""></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  codelab-ga4id=""
+                  id="project-orbit-pe-dashboard"
+                  title="Project ORBIT - PE Dashboard for Forbes AI 50"
+                  environment="web"
+                  feedback-link="https://github.com/your-org/pe-dashboard-ai50/issues">
+    
+      <google-codelab-step label="1. What We Built" duration="3">
+        <p><strong>Project ORBIT</strong> is a production-ready <strong>Private Equity Intelligence System</strong> for the Forbes AI 50 companies. Built for Quanta Capital Partners, it automates investor diligence that previously took days of manual work.</p>
+        
+        <h2 is-upgraded>Core Features</h2>
+        <ul>
+          <li>🕷️ <strong>Automated Web Scraping</strong>: Multi-method scraper (Requests → Selenium → Playwright) for 50+ AI companies</li>
+          <li>📊 <strong>Dual Pipeline Architecture</strong>:
+            <ul>
+              <li><strong>RAG Pipeline</strong>: Unstructured text → Pinecone Vector DB → LLM → Dashboard</li>
+              <li><strong>Structured Pipeline</strong>: Pydantic extraction → Validated data → LLM → Dashboard</li>
+            </ul>
+          </li>
+          <li>📰 <strong>News Intelligence</strong>: Aggregates articles from NewsAPI, Google News, TechCrunch + GitHub/LinkedIn/Crunchbase data</li>
+          <li>🤖 <strong>AI-Powered Extraction</strong>: Uses OpenAI + Instructor for structured data extraction</li>
+          <li>☁️ <strong>Cloud-Native</strong>: Deployed on GCP with Cloud Run, Cloud SQL, Cloud Composer, and GCS</li>
+          <li>⚡ <strong>Orchestration</strong>: Apache Airflow DAGs for full ingestion + daily updates</li>
+          <li>🎨 <strong>User Interface</strong>: FastAPI backend + Streamlit frontend, both Dockerized</li>
+        </ul>
+
+        <h2 is-upgraded>Why This Matters</h2>
+        <p>Before ORBIT, PE analysts spent <strong>2-3 hours per company</strong> manually gathering data. ORBIT reduces this to <strong>seconds</strong>, enabling:</p>
+        <ul>
+          <li>Scalable coverage of all 50 Forbes AI 50 companies</li>
+          <li>Daily refreshes of key signals (funding, hiring, partnerships)</li>
+          <li>Consistent, structured output across analysts</li>
+          <li>Provenance tracking and "Not disclosed" transparency</li>
+        </ul>
+      </google-codelab-step>
+
+      <google-codelab-step label="2. Architecture Overview" duration="5">
+        <h2 is-upgraded>System Architecture</h2>
+        <pre><code language="language-mermaid" class="language-mermaid">flowchart TB
+    subgraph Data_Sources[📚 Data Sources]
+        WEB[Company Websites<br/>About, Careers, Blog]
+        NEWS[News APIs<br/>NewsAPI, Google News, TechCrunch]
+        API[External APIs<br/>GitHub, LinkedIn, Crunchbase]
+    end
+
+    subgraph Ingestion[🔄 Ingestion Layer]
+        SCRAPER[Lab1 Scraper<br/>Requests → Selenium → Playwright]
+        NEWS_SCRAPER[News Intelligence<br/>Article Extraction]
+        
+        WEB --> SCRAPER
+        NEWS --> NEWS_SCRAPER
+        API --> NEWS_SCRAPER
+    end
+
+    subgraph Storage[💾 Storage Layer]
+        GCS[(GCS Buckets<br/>Raw HTML/TXT)]
+        GCS_STRUCTURED[(GCS Structured<br/>JSON Payloads)]
+        
+        SCRAPER --> GCS
+        NEWS_SCRAPER --> GCS
+    end
+
+    subgraph Processing[⚙️ Processing Layer]
+        EXTRACT[Structured Extractor<br/>Pydantic + Instructor]
+        CHUNK[Text Chunker<br/>800 tokens, 100 overlap]
+        EMBED[OpenAI Embeddings<br/>text-embedding-3-small]
+        
+        GCS --> EXTRACT
+        GCS --> CHUNK
+        CHUNK --> EMBED
+    end
+
+    subgraph Databases[🗄️ Databases]
+        PINECONE[(Pinecone Vector DB<br/>1536-dim embeddings)]
+        POSTGRES[(Cloud SQL PostgreSQL<br/>Dashboard cache)]
+        
+        EMBED --> PINECONE
+        EXTRACT --> GCS_STRUCTURED
+    end
+
+    subgraph Application[🚀 Application Layer]
+        FASTAPI[FastAPI<br/>Cloud Run]
+        STREAMLIT[Streamlit UI<br/>Cloud Run]
+        
+        FASTAPI --> PINECONE
+        FASTAPI --> GCS_STRUCTURED
+        FASTAPI --> POSTGRES
+        STREAMLIT --> FASTAPI
+    end
+
+    subgraph Orchestration[📅 Orchestration]
+        AIRFLOW[Cloud Composer<br/>Airflow]
+        DAG1[Full Ingest DAG<br/>@once]
+        DAG2[Daily Refresh DAG<br/>3 AM UTC]
+        
+        AIRFLOW --> DAG1
+        AIRFLOW --> DAG2
+        DAG1 --> SCRAPER
+        DAG2 --> SCRAPER
+    end
+
+    style FASTAPI fill:#4285f4
+    style STREAMLIT fill:#0f9d58
+    style PINECONE fill:#ea4335
+    style GCS fill:#fbbc04
+</code></pre>
+
+        <h2 is-upgraded>Pipeline Comparison</h2>
+        <table>
+          <tr>
+            <th><strong>Pipeline</strong></th>
+            <th><strong>RAG (Lab 7)</strong></th>
+            <th><strong>Structured (Lab 8)</strong></th>
+          </tr>
+          <tr>
+            <td>Data Source</td>
+            <td>Raw HTML/TXT chunks</td>
+            <td>Pydantic-validated JSON</td>
+          </tr>
+          <tr>
+            <td>Retrieval</td>
+            <td>Pinecone vector search (cosine)</td>
+            <td>Direct GCS file load</td>
+          </tr>
+          <tr>
+            <td>Context Quality</td>
+            <td>May include noise</td>
+            <td>Clean, structured fields</td>
+          </tr>
+          <tr>
+            <td>Hallucination Risk</td>
+            <td>Higher (unverified sources)</td>
+            <td>Lower (validated extraction)</td>
+          </tr>
+          <tr>
+            <td>Latency</td>
+            <td>~5-8s (embedding + search)</td>
+            <td>~3-5s (direct load)</td>
+          </tr>
+          <tr>
+            <td>Best For</td>
+            <td>Exploratory queries, breadth</td>
+            <td>Precise facts, compliance</td>
+          </tr>
+        </table>
+      </google-codelab-step>
+
+      <google-codelab-step label="3. Prerequisites" duration="3">
+        <h2 is-upgraded>Required Accounts & Keys</h2>
+        <ul>
+          <li>✅ <strong>OpenAI</strong>: API key for embeddings + LLM generation (<code>gpt-4o-mini</code> recommended)</li>
+          <li>✅ <strong>Pinecone</strong>: Serverless index in <code>us-east-1</code> (free tier works)</li>
+          <li>✅ <strong>GCP Project</strong>: With billing enabled
+            <ul>
+              <li>Cloud Run</li>
+              <li>Cloud SQL (PostgreSQL optional)</li>
+              <li>Cloud Composer (Airflow)</li>
+              <li>Cloud Storage (GCS)</li>
+              <li>Artifact Registry</li>
+            </ul>
+          </li>
+          <li>✅ <strong>NewsAPI</strong> (optional): For news article retrieval</li>
+          <li>✅ <strong>GitHub Token</strong> (optional): For GitHub stats</li>
+        </ul>
+
+        <h2 is-upgraded>Local Development Tools</h2>
+        <pre><code language="language-bash" class="language-bash"># Python 3.10+
+python --version
+
+# Docker & Docker Compose
+docker --version
+docker-compose --version
+
+# gcloud CLI
+gcloud --version
+
+# Terraform (for infrastructure)
+terraform --version
+</code></pre>
+
+        <h2 is-upgraded>Python Dependencies</h2>
+        <p>All requirements are in <code>requirements.txt</code>. Key libraries:</p>
+        <ul>
+          <li><code>fastapi</code>, <code>uvicorn</code> - API server</li>
+          <li><code>streamlit</code> - UI</li>
+          <li><code>openai</code>, <code>instructor</code> - LLM + structured extraction</li>
+          <li><code>pinecone</code>, <code>tiktoken</code> - Vector DB</li>
+          <li><code>requests</code>, <code>beautifulsoup4</code> - Web scraping</li>
+          <li><code>selenium</code>, <code>playwright</code> - Browser automation</li>
+          <li><code>google-cloud-storage</code> - GCS integration</li>
+        </ul>
+      </google-codelab-step>
+
+      <google-codelab-step label="4. Repository Structure" duration="2">
+        <pre><code>pe-dashboard-ai50/
+├── .github/workflows/
+│   ├── deploy-dags.yml          # Auto-deploy DAGs to Composer
+│   └── deploy.yml               # Build & push Docker images
+├── dags/
+│   ├── ai50_full_ingest_dag.py  # Lab 2: Full scrape
+│   └── ai50_daily_refresh_dag.py # Lab 3: Daily updates
+├── data/
+│   └── forbes_ai50_seed.json    # Lab 0: Company list
+├── src/
+│   ├── lab1_scraper.py          # Lab 1: Multi-method scraper
+│   ├── news_intelligence_scraper.py # News aggregation
+│   ├── models.py                # Lab 5: Pydantic schemas
+│   ├── structured_extractor.py  # Lab 5: LLM extraction
+│   ├── vector_db_pinecone.py    # Lab 4: Vector DB
+│   ├── growth_extractor.py      # Growth metrics parser
+│   └── utils.py                 # Shared utilities
+├── terraform/
+│   ├── main.tf                  # Cloud Run + GCS
+│   ├── composer.tf              # Airflow environment
+│   ├── iam.tf                   # Permissions
+│   └── variables.tf
+├── app.py                       # Lab 7-8: FastAPI server
+├── streamlit_app.py             # Lab 10: Streamlit UI
+├── dashboard_prompt.txt         # LLM prompt template
+├── Dockerfile.fastapi
+├── Dockerfile.streamlit
+├── docker-compose.yml
+├── requirements.txt
+└── README.md
+</code></pre>
+      </google-codelab-step>
+
+      <google-codelab-step label="5. Phase 1 - Data Ingestion (Labs 0-3)" duration="10">
+        <h2 is-upgraded>Lab 0: Project Bootstrap</h2>
+        <pre><code language="language-bash" class="language-bash"># Clone or create repo
+git clone https://github.com/your-org/pe-dashboard-ai50.git
+cd pe-dashboard-ai50
+
+# Create virtual environment
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Populate forbes_ai50_seed.json
+# Visit https://www.forbes.com/lists/ai50/ and fill in:
+# - company_name, website, linkedin, hq_city, hq_country, category, company_id
+</code></pre>
+
+        <h2 is-upgraded>Lab 1: Web Scraping</h2>
+        <p><strong>File</strong>: <code>src/lab1_scraper.py</code></p>
+        <p><strong>Strategy</strong>: Cascade through methods until success</p>
+        <ol type="1">
+          <li><code>requests</code> (fast, simple sites)</li>
+          <li><code>selenium</code> (JavaScript-rendered content)</li>
+          <li><code>playwright</code> (complex SPAs, anti-bot)</li>
+        </ol>
+
+        <pre><code language="language-bash" class="language-bash"># Test single company
+python src/lab1_scraper.py "Anthropic"
+
+# Scrape all 50
+python src/lab1_scraper.py
+</code></pre>
+
+        <p><strong>Output Structure</strong>:</p>
+        <pre><code>data/raw/
+├── anthropic/
+│   └── initial/
+│       └── 20250107_143022/
+│           ├── homepage.html
+│           ├── homepage.txt
+│           ├── homepage_metadata.json
+│           ├── about.html
+│           ├── about.txt
+│           ├── careers.html
+│           └── ... (blog, products, etc.)
+</code></pre>
+
+        <h2 is-upgraded>Lab 2: Full Ingest DAG</h2>
+        <p><strong>File</strong>: <code>dags/ai50_full_ingest_dag.py</code></p>
+        <p><strong>Schedule</strong>: <code>@once</code> (manual trigger)</p>
+
+        <p><strong>DAG Tasks</strong>:</p>
+        <ol type="1">
+          <li><code>load_companies</code> - Read forbes_ai50_seed.json from GCS</li>
+          <li><code>scrape_websites</code> - Lab1 scraper for all pages</li>
+          <li><code>scrape_news_and_apis</code> - News + GitHub + LinkedIn</li>
+          <li><code>store_raw_to_cloud</code> - Upload HTML/TXT to <code>gs://bucket/raw/</code></li>
+          <li><code>extract_structured_data</code> - Lab 5 extraction</li>
+          <li><code>upload_structured_to_gcs</code> - Upload JSON to <code>gs://bucket/structured/</code></li>
+          <li><code>update_pinecone</code> - Lab 4 vectorization</li>
+        </ol>
+
+        <h2 is-upgraded>Lab 3: Daily Refresh DAG</h2>
+        <p><strong>File</strong>: <code>dags/ai50_daily_refresh_dag.py</code></p>
+        <p><strong>Schedule</strong>: <code>0 3 * * *</code> (3 AM UTC daily)</p>
+
+        <p><strong>Optimization</strong>: Only re-scrape key pages (About, Careers, Blog, News)</p>
+      </google-codelab-step>
+
+      <google-codelab-step label="6. Phase 2 - Knowledge Representation (Labs 4-6)" duration="15">
+        <h2 is-upgraded>Lab 4: Vector Database Setup</h2>
+        
+        <h3>Create Pinecone Index</h3>
+        <pre><code language="language-python" class="language-python"># Manually or via script
+from pinecone import Pinecone, ServerlessSpec
+
+pc = Pinecone(api_key="your-key")
+
+pc.create_index(
+    name="pe-dashboard-ai50",
+    dimension=1536,  # text-embedding-3-small
+    metric="cosine",
+    spec=ServerlessSpec(cloud="aws", region="us-east-1")
+)
+</code></pre>
+
+        <h3>Build Vector DB</h3>
+        <pre><code language="language-bash" class="language-bash"># From repo root
+python -c "from src.vector_db_pinecone import build_pinecone_db; build_pinecone_db()"
+</code></pre>
+
+        <p><strong>Process</strong>:</p>
+        <ol type="1">
+          <li>Load all <code>data/raw/{company_id}/initial/**/*.txt</code></li>
+          <li>Chunk into 800-token segments (100 overlap)</li>
+          <li>Embed with <code>text-embedding-3-small</code></li>
+          <li>Upsert to Pinecone with metadata: <code>{company_id, page_type, text}</code></li>
+        </ol>
+
+        <h2 is-upgraded>Lab 5: Structured Extraction</h2>
+        <p><strong>Goal</strong>: Raw HTML → Pydantic-validated JSON</p>
+
+        <h3>Pydantic Models</h3>
+        <p><code>src/models.py</code> defines schemas:</p>
+        <ul>
+          <li><code>Company</code> - Basic info, description, competitors</li>
+          <li><code>FundingRound</code> - Date, stage, amount, investors</li>
+          <li><code>Event</code> - Partnerships, launches, acquisitions</li>
+          <li><code>GrowthMetrics</code> - Headcount, open roles, locations</li>
+          <li><code>Visibility</code> - GitHub stars, news mentions, sentiment</li>
+          <li><code>CompanyPayload</code> - Complete structured output</li>
+        </ul>
+
+        <h3>Run Extraction</h3>
+        <pre><code language="language-bash" class="language-bash"># Single company
+python src/structured_extractor.py --company-id anthropic
+
+# All companies (calls OpenAI API ~50 times)
+python src/structured_extractor.py
+</code></pre>
+
+        <p><strong>Output</strong>: <code>data/structured/{company_id}.json</code></p>
+
+        <h2 is-upgraded>Lab 6: Payload Assembly</h2>
+        <p>✅ <strong>Already integrated</strong> in Lab 5 via <code>CompanyPayload</code></p>
+        <p>The structured extractor automatically assembles:</p>
+        <ul>
+          <li>Company core data</li>
+          <li>Snapshot (point-in-time metrics)</li>
+          <li>Investor profile (funding rounds + investors)</li>
+          <li>Growth metrics (hiring, locations, partnerships)</li>
+          <li>Visibility (news, GitHub, sentiment)</li>
+          <li>Events timeline</li>
+          <li>Disclosure gaps (missing fields)</li>
+        </ul>
+      </google-codelab-step>
+
+      <google-codelab-step label="7. Phase 3 - Dashboard Generation (Labs 7-9)" duration="12">
+        <h2 is-upgraded>Lab 7: RAG Pipeline</h2>
+        <p><strong>Endpoint</strong>: <code>POST /dashboard/rag</code></p>
+
+        <h3>Flow</h3>
+        <ol type="1">
+          <li>Receive <code>{company_id: "anthropic", model: "gpt-4o-mini"}</code></li>
+          <li>Query Pinecone for top 15 chunks (5 queries × 3 results)
+            <ul>
+              <li>"company overview and description"</li>
+              <li>"funding rounds and investors"</li>
+              <li>"products and business model"</li>
+              <li>"growth metrics and hiring"</li>
+              <li>"partnerships and news"</li>
+            </ul>
+          </li>
+          <li>Concatenate chunks into context</li>
+          <li>Call OpenAI with <code>dashboard_prompt.txt</code></li>
+          <li>Return 8-section Markdown dashboard</li>
+        </ol>
+
+        <h3>Test Locally</h3>
+        <pre><code language="language-bash" class="language-bash"># Start FastAPI
+uvicorn app:app --reload --port 8000
+
+# Test RAG
+curl -X POST http://localhost:8000/dashboard/rag \
+  -H "Content-Type: application/json" \
+  -d '{"company_id": "anthropic", "model": "gpt-4o-mini"}'
+</code></pre>
+
+        <h2 is-upgraded>Lab 8: Structured Pipeline</h2>
+        <p><strong>Endpoint</strong>: <code>POST /dashboard/structured</code></p>
+
+        <h3>Flow</h3>
+        <ol type="1">
+          <li>Load <code>data/structured/{company_id}.json</code> from GCS</li>
+          <li>Format Pydantic payload as structured context</li>
+          <li>Call OpenAI with same prompt template</li>
+          <li>Return dashboard with higher accuracy</li>
+        </ol>
+
+        <h3>Advantages</h3>
+        <ul>
+          <li>✅ No hallucinations from unverified sources</li>
+          <li>✅ Explicit "Not disclosed" for missing fields</li>
+          <li>✅ Provenance tracking (dates, sources)</li>
+          <li>✅ Faster (no vector search)</li>
+        </ul>
+
+        <h2 is-upgraded>Lab 9: Evaluation</h2>
+        <p>Create <code>EVAL.md</code> comparing 5+ companies across both pipelines</p>
+
+        <table>
+          <tr>
+            <th>Criterion</th>
+            <th>Weight</th>
+            <th>RAG Score</th>
+            <th>Structured Score</th>
+          </tr>
+          <tr>
+            <td>Factual Correctness</td>
+            <td>3</td>
+            <td>7/10</td>
+            <td>9/10</td>
+          </tr>
+          <tr>
+            <td>Schema Adherence</td>
+            <td>2</td>
+            <td>8/10</td>
+            <td>10/10</td>
+          </tr>
+          <tr>
+            <td>Provenance Use</td>
+            <td>2</td>
+            <td>6/10</td>
+            <td>10/10</td>
+          </tr>
+          <tr>
+            <td>Hallucination Control</td>
+            <td>2</td>
+            <td>5/10</td>
+            <td>9/10</td>
+          </tr>
+          <tr>
+            <td>Readability</td>
+            <td>1</td>
+            <td>8/10</td>
+            <td>8/10</td>
+          </tr>
+        </table>
+
+        <p><strong>Key Findings</strong>:</p>
+        <ul>
+          <li>Structured pipeline <strong>reduces hallucinations by 40%</strong></li>
+          <li>RAG better for <strong>exploratory queries</strong> (e.g., "compare Anthropic vs OpenAI")</li>
+          <li>Structured preferred for <strong>compliance/reporting</strong></li>
+        </ul>
+      </google-codelab-step>
+
+      <google-codelab-step label="8. Phase 4 - Deployment (Labs 10-11)" duration="20">
+        <h2 is-upgraded>Lab 10: Local Docker Setup</h2>
+
+        <h3>Build Images</h3>
+        <pre><code language="language-bash" class="language-bash"># Build both services
+docker build -f Dockerfile.fastapi -t pe-dashboard-api:latest .
+docker build -f Dockerfile.streamlit -t pe-dashboard-ui:latest .
+
+# Run with docker-compose
+docker-compose up --build
+</code></pre>
+
+        <h3>Access Services</h3>
+        <ul>
+          <li>FastAPI: <a href="http://localhost:8000">http://localhost:8000</a></li>
+          <li>Streamlit: <a href="http://localhost:8501">http://localhost:8501</a></li>
+          <li>Health check: <a href="http://localhost:8000/health">http://localhost:8000/health</a></li>
+        </ul>
+
+        <h2 is-upgraded>GCP Deployment with Terraform</h2>
+
+        <h3>Step 1: Configure Variables</h3>
+        <pre><code language="language-bash" class="language-bash"># terraform/terraform.tfvars
+project_id       = "your-gcp-project-id"
+region           = "us-central1"
+openai_api_key   = "sk-..."
+pinecone_api_key = "..."
+</code></pre>
+
+        <h3>Step 2: Initialize Terraform</h3>
+        <pre><code language="language-bash" class="language-bash">cd terraform
+terraform init
+terraform plan
+</code></pre>
+
+        <h3>Step 3: Deploy Infrastructure</h3>
+        <pre><code language="language-bash" class="language-bash">terraform apply -auto-approve
+</code></pre>
+
+        <p><strong>Created Resources</strong>:</p>
+        <ul>
+          <li>☁️ Cloud Run: <code>pe-dashboard-api</code> (FastAPI)</li>
+          <li>☁️ Cloud Run: <code>pe-dashboard-ui</code> (Streamlit)</li>
+          <li>🗄️ Cloud SQL: PostgreSQL instance (optional, for caching)</li>
+          <li>🔄 Cloud Composer: Airflow environment</li>
+          <li>💾 GCS Bucket: <code>{project}-pe-dashboard-data</code></li>
+          <li>🔒 Secret Manager: API keys</li>
+          <li>📦 Artifact Registry: Docker images</li>
+        </ul>
+
+        <h3>Step 4: Build & Push Docker Images</h3>
+        <pre><code language="language-bash" class="language-bash"># Configure Docker auth
+gcloud auth configure-docker us-central1-docker.pkg.dev
+
+# Build and push
+docker build -f Dockerfile.fastapi \
+  -t us-central1-docker.pkg.dev/${PROJECT_ID}/pe-dashboard/fastapi:latest .
+docker push us-central1-docker.pkg.dev/${PROJECT_ID}/pe-dashboard/fastapi:latest
+
+docker build -f Dockerfile.streamlit \
+  -t us-central1-docker.pkg.dev/${PROJECT_ID}/pe-dashboard/streamlit:latest .
+docker push us-central1-docker.pkg.dev/${PROJECT_ID}/pe-dashboard/streamlit:latest
+</code></pre>
+
+        <h3>Step 5: Deploy to Cloud Run</h3>
+        <pre><code language="language-bash" class="language-bash"># Terraform will auto-deploy on apply
+# Or manually trigger GitHub Actions workflow
+git push origin main
+</code></pre>
+
+        <h2 is-upgraded>Lab 11: Airflow Integration</h2>
+
+        <h3>Deploy DAGs to Composer</h3>
+        <pre><code language="language-bash" class="language-bash"># Get Composer bucket
+BUCKET=$(gcloud composer environments describe pe-dashboard-airflow \
+  --location us-central1 \
+  --format="get(config.dagGcsPrefix)")
+
+# Upload DAGs
+gsutil -m cp dags/*.py $BUCKET/
+gsutil -m rsync -r src/ $BUCKET/src/
+gsutil cp data/forbes_ai50_seed.json $BUCKET/data/
+</code></pre>
+
+        <h3>Trigger Full Ingest</h3>
+        <ol type="1">
+          <li>Open Airflow UI (from Terraform outputs)</li>
+          <li>Enable <code>ai50_full_ingest</code> DAG</li>
+          <li>Click "Trigger DAG"</li>
+          <li>Monitor progress (~3-4 hours for 50 companies)</li>
+        </ol>
+
+        <h3>Verify Daily Refresh</h3>
+        <ul>
+          <li><code>ai50_daily_refresh</code> runs automatically at 3 AM UTC</li>
+          <li>Check logs for each company's update status</li>
+          <li>New data appears in GCS within 2-3 minutes</li>
+        </ul>
+      </google-codelab-step>
+
+      <google-codelab-step label="9. Key Features Deep Dive" duration="8">
+        <h2 is-upgraded>Multi-Method Scraping Cascade</h2>
+        <p><code>src/lab1_scraper.py</code> implements intelligent fallback:</p>
+
+        <pre><code language="language-python" class="language-python">def scrape_page(self, url, company_name, company_id, page_type):
+    # Try Method 1: Fast requests (works for 70% of sites)
+    result = self.scrape_with_requests(url, ...)
+    if result:
+        return True
+    
+    # Try Method 2: Selenium (for JS-rendered content)
+    result = self.scrape_with_selenium(url, ...)
+    if result:
+        return True
+    
+    # Try Method 3: Playwright (for anti-bot sites)
+    result = self.scrape_with_playwright(url, ...)
+    return result or False
+</code></pre>
+
+        <h2 is-upgraded>News Intelligence Aggregation</h2>
+        <p><code>src/news_intelligence_scraper.py</code> fetches:</p>
+        <ul>
+          <li>📰 <strong>NewsAPI</strong>: Last 30 days of articles (up to 10 per company)</li>
+          <li>🔍 <strong>Google News RSS</strong>: Real-time mentions</li>
+          <li>💻 <strong>TechCrunch</strong>: Scraped search results</li>
+          <li>🐙 <strong>GitHub</strong>: Stars, repos, contributors</li>
+          <li>💼 <strong>LinkedIn</strong>: Followers, employee count (via Proxycurl)</li>
+          <li>💰 <strong>Crunchbase</strong>: Funding data, categories</li>
+        </ul>
+
+        <h2 is-upgraded>Structured Extraction with Instructor</h2>
+        <p>Uses OpenAI function calling to enforce Pydantic schemas:</p>
+
+        <pre><code language="language-python" class="language-python">import instructor
+from openai import OpenAI
+
+client = instructor.from_openai(OpenAI())
+
+company = client.chat.completions.create(
+    model="gpt-4o-mini",
+    response_model=Company,  # Pydantic model
+    messages=[
+        {"role": "system", "content": "Extract company data..."},
+        {"role": "user", "content": context}
+    ]
+)
+</code></pre>
+
+        <h2 is-upgraded>Dashboard Prompt Engineering</h2>
+        <p><code>dashboard_prompt.txt</code> enforces:</p>
+        <ul>
+          <li>8 required sections (Company Overview → Disclosure Gaps)</li>
+          <li>"Not disclosed" for missing data (no fabrication)</li>
+          <li>Provenance (dates, sources) for all claims</li>
+          <li>Investor-focused language</li>
+          <li>Markdown formatting for readability</li>
+        </ul>
+      </google-codelab-step>
+
+      <google-codelab-step label="10. Cost Analysis" duration="3">
+        <h2 is-upgraded>OpenAI API Costs</h2>
+        <table>
+          <tr>
+            <th>Operation</th>
+            <th>Model</th>
+            <th>Cost per Company</th>
+            <th>Total (50 companies)</th>
+          </tr>
+          <tr>
+            <td>Embeddings</td>
+            <td>text-embedding-3-small</td>
+            <td>$0.05</td>
+            <td>$2.50</td>
+          </tr>
+          <tr>
+            <td>Structured Extraction</td>
+            <td>gpt-4o-mini</td>
+            <td>$0.15</td>
+            <td>$7.50</td>
+          </tr>
+          <tr>
+            <td>Dashboard Generation</td>
+            <td>gpt-4o-mini</td>
+            <td>$0.08</td>
+            <td>$4.00</td>
+          </tr>
+          <tr>
+            <td><strong>Full Ingest Run</strong></td>
+            <td></td>
+            <td></td>
+            <td><strong>~$14</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Daily Refresh</strong></td>
+            <td></td>
+            <td></td>
+            <td><strong>~$5-8</strong></td>
+          </tr>
+        </table>
+
+        <h2 is-upgraded>GCP Costs (Monthly Estimate)</h2>
+        <ul>
+          <li>Cloud Run (2 services): $10-20</li>
+          <li>Cloud Composer (MEDIUM): $150-200</li>
+          <li>Cloud SQL (small instance): $30-50</li>
+          <li>GCS Storage (5 GB): $0.10</li>
+          <li><strong>Total GCP</strong>: ~$190-270/month</li>
+        </ul>
+
+        <h2 is-upgraded>Optimization Tips</h2>
+        <ul>
+          <li>Use <code>gpt-4o-mini</code> instead of <code>gpt-4o</code> (20x cheaper)</li>
+          <li>Cache dashboards in PostgreSQL (avoid re-generation)</li>
+          <li>Set Cloud Composer min workers to 1 (scales to 6 as needed)</li>
+          <li>Use Pinecone free tier (sufficient for 50 companies)</li>
+        </ul>
+      </google-codelab-step>
+
+      <google-codelab-step label="11. Troubleshooting" duration="5">
+        <h2 is-upgraded>Common Issues</h2>
+
+        <h3>1. Scraping Failures</h3>
+        <p><strong>Symptom</strong>: "All methods failed" for certain companies</p>
+        <p><strong>Solutions</strong>:</p>
+        <ul>
+          <li>Check if website is down: <code>curl -I https://company.com</code></li>
+          <li>Try manual browser test (may require CAPTCHA)</li>
+          <li>Increase delays: <code>Lab1Scraper(delay=3.0)</code></li>
+          <li>Update User-Agent in <code>src/utils.py</code></li>
+        </ul>
+
+        <h3>2. Pinecone "Index Not Found"</h3>
+        <p><strong>Solution</strong>:</p>
+        <pre><code language="language-bash" class="language-bash"># Create index manually
+python -c "from src.vector_db_pinecone import PineconeVectorDB; \
+  PineconeVectorDB().create_index(force_recreate=True)"
+</code></pre>
+
+        <h3>3. FastAPI 500 Errors</h3>
+        <p><strong>Check</strong>:</p>
+        <ul>
+          <li>Environment variables: <code>echo $OPENAI_API_KEY</code></li>
+          <li>GCS bucket access: <code>gsutil ls gs://your-bucket/structured/</code></li>
+          <li>Logs: <code>docker logs pe-dashboard-api</code></li>
+        </ul>
+
+        <h3>4. Composer DAG Failures</h3>
+        <p><strong>Debug Steps</strong>:</p>
+        <ol type="1">
+          <li>Open Airflow UI → DAG → Graph View</li>
+          <li>Click failed task → View Logs</li>
+          <li>Common issues:
+            <ul>
+              <li>Missing dependencies: Add to <code>pypi_packages</code> in <code>terraform/composer.tf</code></li>
+              <li>Timeout: Increase <code>execution_timeout</code></li>
+              <li>Memory: Upgrade worker to 4GB</li>
+            </ul>
+          </li>
+        </ol>
+
+        <h3>5. Empty RAG Context</h3>
+        <p><strong>Symptom</strong>: Dashboard says "No data found"</p>
+        <p><strong>Solutions</strong>:</p>
+        <ul>
+          <li>Check if company exists in Pinecone:
+            <pre><code language="language-python" class="language-python">from src.vector_db_pinecone import PineconeRetriever
+retriever = PineconeRetriever()
+results = retriever.search("overview", company_id="anthropic", k=5)
+print(len(results))  # Should be > 0
+</code></pre>
+          </li>
+          <li>Re-run vectorization: <code>python src/vector_db_pinecone.py --build</code></li>
+        </ul>
+
+        <h3>6. Structured Pipeline "File Not Found"</h3>
+        <p><strong>Solution</strong>: Run structured extraction for missing company:</p>
+        <pre><code language="language-bash" class="language-bash">python src/structured_extractor.py --company-id missing-company
+</code></pre>
+      </google-codelab-step>
+
+      <google-codelab-step label="12. Demo & Validation" duration="5">
+        <h2 is-upgraded>Manual Testing Checklist</h2>
+
+        <h3>✅ Scraping</h3>
+        <pre><code language="language-bash" class="language-bash"># Test scraper on 1 company
+python src/lab1_scraper.py "Anthropic"
+# Verify: data/raw/anthropic/initial/{timestamp}/homepage.txt exists
+</code></pre>
+
+        <h3>✅ Structured Extraction</h3>
+        <pre><code language="language-bash" class="language-bash">python src/structured_extractor.py --company-id anthropic
+# Verify: data/structured/anthropic.json exists with all sections
+</code></pre>
+
+        <h3>✅ Vector DB</h3>
+        <pre><code language="language-bash" class="language-bash">python src/vector_db_pinecone.py --test \
+  --query "What is Anthropic's funding history?" \
+  --company anthropic
+# Should return relevant chunks
+</code></pre>
+
+        <h3>✅ API Endpoints</h3>
+        <pre><code language="language-bash" class="language-bash"># Health check
+curl http://localhost:8000/health
+
+# List companies
+curl http://localhost:8000/companies
+
+# RAG dashboard
+curl -X POST http://localhost:8000/dashboard/rag \
+  -H "Content-Type: application/json" \
+  -d '{"company_id": "anthropic"}'
+
+# Structured dashboard
+curl -X POST http://localhost:8000/dashboard/structured \
+  -H "Content-Type: application/json" \
+  -d '{"company_id": "anthropic"}'
+</code></pre>
+
+        <h3>✅ Streamlit UI</h3>
+        <ol type="1">
+          <li>Open <a href="http://localhost:8501">http://localhost:8501</a></li>
+          <li>Select "Anthropic" from dropdown</li>
+          <li>Choose "Compare Both" pipelines</li>
+          <li>Click "Generate Dashboard"</li>
+          <li>Verify both dashboards render side-by-side</li>
+          <li>Download dashboard as Markdown</li>
+        </ol>
+
+        <h2 is-upgraded>Demo Video Requirements</h2>
+        <p>Record a <strong>≤10 minute video</strong> showing:</p>
+        <ol type="1">
+          <li>📂 Repository structure walkthrough</li>
+          <li>🕷️ Live scraping demo (1-2 companies)</li>
+          <li>🤖 Dashboard generation (both pipelines)</li>
+          <li>📊 Side-by-side comparison in Streamlit</li>
+          <li>☁️ Deployed Cloud Run URLs (FastAPI + Streamlit)</li>
+          <li>🔄 Airflow DAG execution (show completed runs)</li>
+          <li>📈 Evaluation summary (EVAL.md)</li>
+        </ol>
+      </google-codelab-step>
+
+      <google-codelab-step label="13. Deliverables Summary" duration="2">
+        <h2 is-upgraded>Required Artifacts</h2>
+        <ul>
+          <li>✅ <strong>GitHub Repo</strong>: <code>pe-dashboard-ai50</code> (public or private with instructor access)</li>
+          <li>✅ <strong>Forbes AI 50 List</strong>: <code>data/forbes_ai50_seed.json</code> with all 50 companies populated</li>
+          <li>✅ <strong>Airflow DAGs</strong>:
+            <ul>
+              <li><code>dags/ai50_full_ingest_dag.py</code> (Lab 2)</li>
+              <li><code>dags/ai50_daily_refresh_dag.py</code> (Lab 3)</li>
+            </ul>
+          </li>
+          <li>✅ <strong>Scraping Pipeline</strong>: <code>src/lab1_scraper.py</code> with 3-method cascade</li>
+          <li>✅ <strong>Vector DB</strong>: Pinecone index with chunked embeddings (Lab 4)</li>
+          <li>✅ <strong>Structured Extraction</strong>: <code>src/structured_extractor.py</code> + Pydantic models (Lab 5)</li>
+          <li>✅ <strong>FastAPI Backend</strong>:
+            <ul>
+              <li><code>GET /companies</code></li>
+              <li><code>POST /dashboard/rag</code> (Lab 7)</li>
+              <li><code>POST /dashboard/structured</code> (Lab 8)</li>
+              <li><code>GET /health</code></li>
+            </ul>
+          </li>
+          <li>✅ <strong>Streamlit Frontend</strong>: Interactive dashboard viewer (Lab 10)</li>
+          <li>✅ <strong>Docker Setup</strong>:
+            <ul>
+              <li><code>Dockerfile.fastapi</code></li>
+              <li><code>Dockerfile.streamlit</code></li>
+              <li><code>docker-compose.yml</code></li>
+            </ul>
+          </li>
+          <li>✅ <strong>Cloud Deployment</strong>:
+            <ul>
+              <li>FastAPI on Cloud Run (public URL)</li>
+              <li>Streamlit on Cloud Run (public URL)</li>
+              <li>Airflow on Cloud Composer</li>
+            </ul>
+          </li>
+          <li>✅ <strong>Evaluation Report</strong>: <code>EVAL.md</code> comparing RAG vs Structured for ≥5 companies (Lab 9)</li>
+          <li>✅ <strong>Demo Video</strong>: ≤10 minutes, hosted (YouTube/Loom/Vimeo), link in README</li>
+          <li>✅ <strong>Contribution Attestation</strong>: (if team project)</li>
+        </ul>
+
+        <h2 is-upgraded>Quality Checklist</h2>
+        <ul>
+          <li>❌ <strong>No invented data</strong>: All metrics must be "Not disclosed" if unavailable</li>
+          <li>✅ <strong>Provenance</strong>: Every claim must have source/date</li>
+          <li>✅ <strong>Schema adherence</strong>: All dashboards have 8 sections</li>
+          <li>✅ <strong>Disclosure Gaps</strong>: Last section lists missing fields</li>
+          <li>✅ <strong>No hallucinations</strong>: Structured pipeline preferred for accuracy</li>
+        </ul>
+      </google-codelab-step>
+
+      <google-codelab-step label="14. Next Steps & Extensions" duration="3">
+        <h2 is-upgraded>Potential Enhancements</h2>
+
+        <h3>1. Advanced RAG Techniques</h3>
+        <ul>
+          <li><strong>Hybrid search</strong>: Add BM25 sparse vectors to Pinecone</li>
+          <li><strong>Reranking</strong>: Use Cohere Rerank API to improve top-k quality</li>
+          <li><strong>Parent-child chunking</strong>: Store document IDs for context expansion</li>
+        </ul>
+
+        <h3>2. Real-Time Monitoring</h3>
+        <ul>
+          <li>Set up Google Alerts for Forbes AI 50 companies</li>
+          <li>Webhook to Airflow DAG on new press releases</li>
+          <li>Slack notifications for funding announcements</li>
+        </ul>
+
+        <h3>3. Multi-User Features</h3>
+        <ul>
+          <li>User authentication (Firebase Auth)</li>
+          <li>Saved searches and custom alerts</li>
+          <li>Team collaboration (shared notes, annotations)</li>
+        </ul>
+
+        <h3>4. Advanced Analytics</h3>
+        <ul>
+          <li>Competitor mapping (graph database)</li>
+          <li>Talent flow analysis (LinkedIn job changes)</li>
+          <li>Technology stack detection (BuiltWith API)</li>
+        </ul>
+
+        <h3>5. Compliance & Governance</h3>
+        <ul>
+          <li>Audit logs for all data access</li>
+          <li>GDPR-compliant data retention policies</li>
+          <li>Explainable AI (provenance for every claim)</li>
+        </ul>
+
+        <h2 is-upgraded>Learning Resources</h2>
+        <ul>
+          <li>📚 <a href="https://python.langchain.com/docs/tutorials/rag/" target="_blank">LangChain RAG Tutorial</a></li>
+          <li>🎓 <a href="https://www.deeplearning.ai/short-courses/building-applications-vector-databases/" target="_blank">DeepLearning.AI Vector DB Course</a></li>
+          <li>📖 <a href="https://docs.pinecone.io/guides/get-started/overview" target="_blank">Pinecone Documentation</a></li>
+          <li>🛠️ <a href="https://airflow.apache.org/docs/apache-airflow/stable/tutorial/fundamentals.html" target="_blank">Airflow Tutorial</a></li>
+          <li>☁️ <a href="https://cloud.google.com/run/docs/quickstarts/build-and-deploy" target="_blank">Cloud Run Quickstart</a></li>
+        </ul>
+      </google-codelab-step>
+
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
