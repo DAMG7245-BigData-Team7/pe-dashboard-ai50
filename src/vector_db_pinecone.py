@@ -1,6 +1,7 @@
 """
 Lab 4 - Vector DB & RAG Index with Pinecone
 Creates embeddings and stores in Pinecone for cloud-ready RAG
+UPDATED: Airflow-compatible (no interactive prompts)
 """
 
 import os
@@ -137,8 +138,14 @@ class PineconeVectorDB:
         
         logger.info(f"Initialized Pinecone with index: {index_name}")
     
-    def create_index(self):
-        """Create Pinecone index if it doesn't exist"""
+    def create_index(self, force_recreate: bool = False):
+        """
+        Create Pinecone index if it doesn't exist
+        
+        Args:
+            force_recreate: If True, delete and recreate existing index
+                           If False, use existing index (default for Airflow)
+        """
         
         # Check if index exists
         existing_indexes = self.pc.list_indexes()
@@ -146,14 +153,14 @@ class PineconeVectorDB:
         if self.index_name in [idx.name for idx in existing_indexes]:
             logger.info(f"Index '{self.index_name}' already exists")
             
-            # Ask if user wants to delete and recreate
-            response = input(f"Delete and recreate index '{self.index_name}'? (y/n): ")
-            if response.lower() == 'y':
-                logger.info(f"Deleting existing index...")
+            if force_recreate:
+                # Delete and recreate (only if explicitly requested)
+                logger.info(f"Force recreating index...")
                 self.pc.delete_index(self.index_name)
                 time.sleep(5)  # Wait for deletion
             else:
-                logger.info("Using existing index")
+                # Use existing index (default behavior for Airflow)
+                logger.info("Using existing index (set force_recreate=True to recreate)")
                 self.index = self.pc.Index(self.index_name)
                 return
         
@@ -172,7 +179,12 @@ class PineconeVectorDB:
         
         # Wait for index to be ready
         logger.info("Waiting for index to be ready...")
+        max_wait = 300  # 5 minutes max
+        start_time = time.time()
+        
         while not self.pc.describe_index(self.index_name).status['ready']:
+            if time.time() - start_time > max_wait:
+                raise TimeoutError(f"Index creation timeout after {max_wait}s")
             time.sleep(1)
         
         self.index = self.pc.Index(self.index_name)
@@ -207,6 +219,9 @@ class PineconeVectorDB:
                 
                 logger.info(f"Embedded {len(embeddings)}/{len(texts)} chunks")
                 
+                # Rate limiting
+                time.sleep(0.5)
+                
             except Exception as e:
                 logger.error(f"Error in batch embedding: {e}")
                 # Fallback to individual
@@ -214,6 +229,7 @@ class PineconeVectorDB:
                     emb = self.get_embedding(text)
                     if emb:
                         embeddings.append(emb)
+                    time.sleep(0.2)
         
         return embeddings
     
@@ -320,21 +336,34 @@ class PineconeVectorDB:
             batch = vectors[i:i + batch_size]
             self.index.upsert(vectors=batch)
             logger.info(f"Upserted {min(i + batch_size, len(vectors))}/{len(vectors)} vectors")
+            
+            # Rate limiting
+            time.sleep(0.5)
         
         logger.info(f"✓ All vectors uploaded to Pinecone")
     
-    def build_for_all_companies(self):
-        """Build vector DB from all companies"""
+    def build_for_all_companies(self, force_recreate: bool = False):
+        """
+        Build vector DB from all companies
+        
+        Args:
+            force_recreate: If True, recreate index even if it exists
+        """
         
         logger.info(f"\n{'#'*60}")
         logger.info(f"LAB 4 - BUILDING PINECONE VECTOR DATABASE")
         logger.info(f"{'#'*60}\n")
         
-        # Create index
-        self.create_index()
+        # Create index (will use existing by default in Airflow)
+        self.create_index(force_recreate=force_recreate)
         
         # Process all companies
         raw_dir = ScraperConfig.RAW_DIR
+        
+        if not raw_dir.exists():
+            logger.error(f"Raw data directory not found: {raw_dir}")
+            return
+        
         company_folders = sorted([f for f in raw_dir.iterdir() if f.is_dir()])
         
         logger.info(f"\nProcessing {len(company_folders)} companies...\n")
@@ -354,6 +383,8 @@ class PineconeVectorDB:
         # Upload to Pinecone
         if all_chunks:
             self.upsert_chunks(all_chunks)
+        else:
+            logger.warning("No chunks to upload!")
         
         # Save summary locally
         summary = {
@@ -398,9 +429,12 @@ class PineconeRetriever:
         self.embedding_model = embedding_model
         
         # Get index stats
-        stats = self.index.describe_index_stats()
-        logger.info(f"Connected to Pinecone index: {index_name}")
-        logger.info(f"Total vectors: {stats['total_vector_count']}")
+        try:
+            stats = self.index.describe_index_stats()
+            logger.info(f"Connected to Pinecone index: {index_name}")
+            logger.info(f"Total vectors: {stats.get('total_vector_count', 0)}")
+        except Exception as e:
+            logger.warning(f"Could not get index stats: {e}")
     
     def search(self, 
                query: str, 
@@ -458,11 +492,16 @@ class PineconeRetriever:
         return formatted
 
 
-def build_pinecone_db():
-    """Build Pinecone vector DB from all companies"""
+def build_pinecone_db(force_recreate: bool = False):
+    """
+    Build Pinecone vector DB from all companies
+    
+    Args:
+        force_recreate: If True, delete and recreate index
+    """
     
     builder = PineconeVectorDB()
-    builder.build_for_all_companies()
+    builder.build_for_all_companies(force_recreate=force_recreate)
 
 
 # CLI interface
@@ -471,6 +510,7 @@ if __name__ == "__main__":
     
     parser = argparse.ArgumentParser(description="Lab 4 - Pinecone Vector DB")
     parser.add_argument('--build', action='store_true', help='Build vector DB')
+    parser.add_argument('--force-recreate', action='store_true', help='Delete and recreate index')
     parser.add_argument('--test', action='store_true', help='Test search')
     parser.add_argument('--query', type=str, help='Search query')
     parser.add_argument('--company', type=str, help='Filter by company')
@@ -479,7 +519,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     if args.build:
-        build_pinecone_db()
+        build_pinecone_db(force_recreate=args.force_recreate)
     
     if args.test or args.query:
         # Test retrieval
